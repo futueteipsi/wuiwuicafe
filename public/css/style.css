@@ -569,3 +569,96 @@ footer {
     height: 100%;
     object-fit: cover;
 }
+
+/* MOBILE RESPONSIVENESS (FIXED) */
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        width: 100%;
+        gap: 15px; 
+    }
+
+    .nav-links a {
+        margin: 0; 
+        font-size: 1.2rem;
+        display: block;
+    }
+    
+    /* buttons home */
+    .btn-signup, .btn-logout, .user-menu {
+        margin: 0 !important; 
+        width: 100%;          
+        max-width: 200px;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .user-menu {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    /* home pg */
+    .main-welcome {
+        font-size: 2.5rem;
+        margin-top: 30px;
+        padding: 0 10px;
+    }
+
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .about-text { margin-bottom: 20px; }
+    
+    /* our cats pic */
+    .cat-section, .cat-section:nth-child(even) {
+        flex-direction: column !important; 
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .cat-visual {
+        width: 100%; 
+        order: -1;   
+    }
+
+    .slider-wrapper {
+        height: 300px; 
+        width: 100%;
+    }
+    
+    .cat-details { width: 100%; }
+
+    /* game page */
+    .games-grid {
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    .game-card {
+        width: 100% !important; 
+        max-width: 100% !important;
+        margin-bottom: 20px;
+    }
+
+    /* sweeper */
+    .minesweeper-container {
+        padding: 10px;
+        transform: scale(0.9); 
+    }
+}
