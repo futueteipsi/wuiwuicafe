@@ -570,12 +570,14 @@ footer {
     object-fit: cover;
 }
 
-/* MOBILE RESPONSIVENESS (FIXED) */
+/* MOBILE RESPONSIVENESS */
 
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
         padding: 15px;
+        position: relative;
+        top: auto;
     }
 
     .logo {
@@ -661,4 +663,5 @@ footer {
         padding: 10px;
         transform: scale(0.9); 
     }
+
 }
