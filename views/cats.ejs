@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Cats | WuiWuiCafe</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">WuiWuiCafe</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/cats" class="active">Our Cats</a>
+            <a href="/games">Games</a>
+            
+            <% if (user) { %>
+                <div class="user-menu">
+                    <span class="user-name"> <%= user.username %></span>
+                    <a href="/logout" class="btn-logout">Logout</a>
+                </div>
+            <% } else { %>
+                <a href="/login">Login</a>
+                <a href="/register" class="btn-signup">Sign Up</a>
+            <% } %>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Meet Our Stars</h1>
+        <p>They run this place, we just work here.</p>
+    </header>
+
+    <main class="cats-container">
+        
+        <% cats.forEach(function(cat, index) { %>
+            <section class="cat-section" id="cat-<%= index %>">
+                
+                <div class="cat-visual">
+                    <div class="slider-wrapper">
+                        <button class="slider-btn prev" onclick="moveSlide('<%= index %>', -1)">❮</button>
+                        
+                        <div class="slides-container" id="slides-<%= index %>">
+                            <% cat.images.forEach(function(img, imgIndex) { %>
+                                <img src="<%= img %>" class="slide-img <%= imgIndex === 0 ? 'active' : '' %>" alt="<%= cat.name %>">
+                            <% }); %>
+                        </div>
+
+                        <button class="slider-btn next" onclick="moveSlide('<%= index %>', 1)">❯</button>
+                    </div>
+                </div>
+
+                <div class="cat-details">
+                    <div class="details-content">
+                        <h2><%= cat.name %> <span class="age-tag"><%= cat.age %></span></h2>
+                        <p><%= cat.description %></p>
+                        
+                        <button class="btn-like" onclick="toggleLike(this, '<%= cat.name %>')">
+                            <span class="heart-icon">❤</span> 
+                            <span class="like-text">Like <%= cat.name %></span>
+                        </button>
+
+                    </div>
+                </div>
+
+            </section>
+        <% }); %>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 WuiWuiCafe Project.</p>
+    </footer>
+
+    <script>
+        // images slider
+        function moveSlide(catIndex, direction) {
+            const container = document.getElementById(`slides-${catIndex}`);
+            const slides = container.getElementsByClassName('slide-img');
+            
+            let activeIndex = 0;
+            for (let i = 0; i < slides.length; i++) {
+                if (slides[i].classList.contains('active')) {
+                    activeIndex = i;
+                    slides[i].classList.remove('active');
+                    break;
+                }
+            }
+
+            let newIndex = activeIndex + direction;
+            if (newIndex >= slides.length) newIndex = 0;
+            if (newIndex < 0) newIndex = slides.length - 1;
+
+            slides[newIndex].classList.add('active');
+        }
+
+        // like button amination
+        function toggleLike(btn, catName) {
+            btn.classList.toggle('liked');
+            
+            const textSpan = btn.querySelector('.like-text');
+            const heartSpan = btn.querySelector('.heart-icon');
+
+            if (btn.classList.contains('liked')) {
+                textSpan.innerText = "Liked!";
+                heartSpan.innerText = "💖";
+            } else {
+                textSpan.innerText = "Like " + catName;
+                heartSpan.innerText = "❤";
+            }
+        }
+    </script>
+
+</body>
+</html>

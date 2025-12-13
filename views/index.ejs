@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | WuiWuiCafe</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    
+    <nav>
+        <div class="logo">WuiWuiCafe</div>
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="/cats">Our Cats</a>
+            <a href="/games">Games</a>
+            
+            <% if (user) { %>
+                <div class="user-menu">
+                    <span class="user-name"><%= user.username %></span>
+                    <a href="/logout" class="btn-logout">Logout</a>
+                </div>
+            <% } else { %>
+                <a href="/login">Login</a>
+                <a href="/register" class="btn-signup">Sign Up</a>
+            <% } %>
+        </div>
+    </nav>
+
+    <h1 class="main-welcome">Welcome to <span class="highlight">WuiWuiCafe</span></h1>
+
+    <section class="about-strip">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>About Us</h2>
+                <p>
+                    We are the coziest cat cafe in the heart of Riga. 
+                    Our mission is to connect people with our fluffy rescue cats while serving the best premium coffee and homemade desserts.
+                    Come for the coffee, stay for the purrs.
+                </p>
+            </div>
+            <div class="about-action">
+                <a href="/cats" class="btn primary">Meet Our Residents ➜</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="quiz-strip">
+        <div class="quiz-container">
+            <h2>✨ Daily Cat Persona ✨</h2>
+            <p>Answer 3 simple questions to find out your inner cat today!</p>
+            
+            <button id="start-quiz-btn" class="btn primary" onclick="startQuiz()">Take the Quiz</button>
+
+            <div id="quiz-box" class="hidden">
+                <h3 id="question-text">Question goes here...</h3>
+                <div class="options-grid">
+                    <button class="quiz-option" onclick="answer(0)">Option A</button>
+                    <button class="quiz-option" onclick="answer(1)">Option B</button>
+                    <button class="quiz-option" onclick="answer(2)">Option C</button>
+                </div>
+            </div>
+
+            <div id="result-box" class="hidden">
+                <h3>You are a...</h3>
+                <h2 id="result-title" class="highlight">RESULT NAME</h2>
+                <div class="result-img-wrapper">
+                    <img id="result-img" src="" alt="Cat Result">
+                </div>
+                <p id="result-desc">Description goes here.</p>
+                <button class="btn-refresh" onclick="location.reload()">Try Again</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="api-container">
+        <div class="api-header">
+            <h3>Not in the mood?</h3>
+            <p>If you are not in the mood here are random pictures of cats for good mood:</p>
+            <small>(Powered by External API)</small>
+        </div>
+
+        <div class="random-grid">
+            <% if (locals.apiCats && apiCats.length > 0) { %>
+                <% apiCats.forEach(function(cat) { %>
+                    <div class="random-card">
+                        <img src="<%= cat.url %>" alt="Random Cat from Internet">
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>Oops, the internet cats are sleeping right now.</p>
+            <% } %>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/" class="btn-refresh">Get More Cats ↻</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 WuiWuiCafe Project.</p>
+    </footer>
+
+    <script src="/js/quiz.js"></script>
+
+</body>
+</html>
