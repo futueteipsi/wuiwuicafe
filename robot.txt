@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /logout
+Disallow: /games/catsweeper
+
+Sitemap: https://wuiwuicafe.onrender.com/sitemap.xml
