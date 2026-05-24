@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CatSweeper | WuiWuiCafe</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .game-wrapper { display: flex; justify-content: center; align-items: center; margin-top: 20px; position: relative; }
+        .center-text { text-align: center; max-width: 800px; margin: 0 auto; }
+        .minesweeper-container { background: #fff0f5; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(255, 183, 197, 0.4); border: 4px solid var(--primary-pink); position: relative; }
+        .game-header { display: flex; justify-content: space-between; align-items: center; background: #f8bbd0; padding: 10px; border-radius: 10px; margin-bottom: 15px; border: 2px solid #f48fb1; }
+        .counter { background: #ad1457; color: #ff80ab; font-family: 'Courier New', monospace; font-size: 24px; padding: 5px 10px; border-radius: 5px; min-width: 50px; font-weight: bold; }
+        .reset-btn { width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 0; transition: transform 0.2s; }
+        .reset-btn:hover { transform: scale(1.1); }
+        .reset-btn img { width: 100%; height: 100%; display: block; }
+        .grid { display: grid; grid-template-columns: repeat(9, 32px); gap: 0; border: 4px solid #8d6e63; margin: 0 auto; }
+        .cell { width: 32px; height: 32px; cursor: pointer; }
+        .cell img { width: 100%; height: 100%; display: block; }
+        .modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.9); display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 16px; z-index: 10; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal-content { background: white; padding: 20px 40px; border-radius: 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.15); border: 3px solid var(--accent); }
+        .modal-content h2 { margin-top: 0; color: var(--accent); }
+        .modal-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 15px; }
+        .btn-restart { background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 1rem; text-decoration: none; }
+        .btn-restart:hover { background: var(--deep-pink); }
+        .btn-exit { background: white; color: var(--accent); border: 2px solid var(--accent); padding: 8px 18px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 1rem; text-decoration: none; }
+        .btn-exit:hover { background: #fff0f5; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">WuiWuiCafe</div>
+        <div class="nav-links">
+            <a href="/"><%= __("nav_home") %></a>
+            <a href="/cats"><%= __("nav_cats") %></a>
+            <a href="/games" class="active"><%= __("nav_games") %></a>
+            
+            <% if (typeof user !== 'undefined' && user) { %>
+                <div class="user-menu">
+                    <span class="user-name"><%= user.username %></span>
+                    <a href="/logout" class="btn-logout"><%= __("nav_logout") %></a>
+                </div>
+            <% } %>
+
+            <div class="lang-switcher">
+                <a href="/change-lang/en" class="<%= locale === 'en' ? 'lang-active' : '' %>">EN</a>
+                <span>|</span>
+                <a href="/change-lang/lv" class="<%= locale === 'lv' ? 'lang-active' : '' %>">LV</a>
+            </div>
+
+            <div class="accessibility-toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="accessibility-checkbox" onclick="toggleAccessibility()">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="hero center-text">
+        <h1>CatSweeper</h1>
+        <p><%= __("sweep_sub") %></p>
+
+        <div class="game-wrapper">
+            <div class="minesweeper-container">
+                <div class="game-header">
+                    <div class="counter" id="bomb-count">010</div>
+                    <button class="reset-btn" onclick="initGame()">
+                        <img src="/images/minesweeper/face_happy.png" id="face-btn" alt="Reset">
+                    </button>
+                    <div class="counter" id="timer">000</div>
+                </div>
+
+                <div class="mobile-tool-toggle" style="display: flex; justify-content: center; margin-bottom: 15px; gap: 10px;">
+                    <button id="mode-dig" class="btn-toggle active" onclick="setGameMode('dig')"><%= __("sweep_dig") %></button>
+                    <button id="mode-flag" class="btn-toggle" onclick="setGameMode('flag')"><%= __("sweep_flag") %></button>
+                </div>
+                
+                <div class="grid" id="grid"></div>
+
+                <div class="modal-overlay" id="game-modal">
+                    <div class="modal-content">
+                        <h2 id="modal-title"><%= __("sweep_won") %></h2>
+                        <p id="modal-text"><%= __("sweep_safe") %></p>
+                        
+                        <div class="modal-buttons">
+                            <button class="btn-restart" onclick="initGame()"><%= __("sweep_play_again") %></button>
+                            <a href="/games" class="btn-exit"><%= __("sweep_exit") %></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        <a href="/games" style="color: var(--text-dark); text-decoration: underline;"><%= __("sweep_back") %></a>
+    </div>
+
+    <script src="/js/minesweeper.js"></script>
+
+    <script>
+        function toggleAccessibility() {
+            const checkbox = document.getElementById('accessibility-checkbox');
+            if (checkbox.checked) {
+                document.body.classList.add('accessibility-mode');
+                localStorage.setItem('accessibilityMode', 'enabled');
+            } else {
+                document.body.classList.remove('accessibility-mode');
+                localStorage.setItem('accessibilityMode', 'disabled');
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const checkbox = document.getElementById('accessibility-checkbox');
+            if (localStorage.getItem('accessibilityMode') === 'enabled') {
+                document.body.classList.add('accessibility-mode');
+                if (checkbox) checkbox.checked = true;
+            }
+        });
+    </script>
+</body>
+</html>
