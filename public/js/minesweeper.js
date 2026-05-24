@@ -15,6 +15,7 @@ const bombAmount = 10;
 let squares = [];
 let isGameOver = false;
 let flags = 0;
+let currentMode = 'dig';
 
 // assets path
 const assets = {
@@ -26,17 +27,42 @@ const assets = {
     faceWin: '/images/minesweeper/face_win.png',
     faceDead: '/images/minesweeper/face_dead.png',
     nums: [
-        null, // 0 index unused
+        null, 
         '/images/minesweeper/num_1.png',
         '/images/minesweeper/num_2.png',
         '/images/minesweeper/num_3.png',
         '/images/minesweeper/num_4.png',
-        '/images/minesweeper/num_4.png', // fallback for 5>
+        '/images/minesweeper/num_4.png', 
         '/images/minesweeper/num_4.png',
         '/images/minesweeper/num_4.png',
         '/images/minesweeper/num_4.png'
     ]
 };
+
+// for mob btns
+function setGameMode(mode) {
+    currentMode = mode;
+    const digBtn = document.getElementById('mode-dig');
+    const flagBtn = document.getElementById('mode-flag');
+
+    if (mode === 'dig') {
+        digBtn.style.background = 'var(--accent)';
+        digBtn.style.color = 'white';
+        digBtn.style.borderColor = 'var(--accent)';
+        
+        flagBtn.style.background = 'white';
+        flagBtn.style.color = 'var(--text-dark)';
+        flagBtn.style.borderColor = 'var(--text-light)';
+    } else {
+        flagBtn.style.background = 'var(--accent)';
+        flagBtn.style.color = 'white';
+        flagBtn.style.borderColor = 'var(--accent)';
+        
+        digBtn.style.background = 'white';
+        digBtn.style.color = 'var(--text-dark)';
+        digBtn.style.borderColor = 'var(--text-light)';
+    }
+}
 
 // INITIALIZE GAME
 function initGame() {
@@ -47,6 +73,7 @@ function initGame() {
     flags = 0;
     bombCountElement.innerText = '0' + bombAmount;
     faceBtn.src = assets.faceHappy;
+    setGameMode('dig'); 
 
     // randomize bombs
     const bombsArray = Array(bombAmount).fill('bomb');
@@ -68,8 +95,14 @@ function initGame() {
         gridElement.appendChild(square);
         squares.push(square);
 
-        // click handlers
-        square.addEventListener('click', function(e) { click(square); });
+        square.addEventListener('click', function(e) { 
+            if (currentMode === 'flag') {
+                addFlag(square);
+            } else {
+                click(square);
+            }
+        });
+
         square.oncontextmenu = function(e) {
             e.preventDefault();
             addFlag(square);
@@ -101,18 +134,21 @@ function addFlag(square) {
     if (isGameOver) return;
     const img = square.querySelector('img');
 
-    if (!square.classList.contains('checked') && (flags < bombAmount)) {
+    if (!square.classList.contains('checked')) {
         if (!square.classList.contains('flag')) {
+            if (flags >= bombAmount) return; 
             square.classList.add('flag');
             img.src = assets.flag;
             flags++;
-            bombCountElement.innerText = '0' + (bombAmount - flags);
+            let currentRemaining = bombAmount - flags;
+            bombCountElement.innerText = currentRemaining < 10 ? '0' + currentRemaining : currentRemaining;
             checkForWin();
         } else {
             square.classList.remove('flag');
             img.src = assets.closed;
             flags--;
-            bombCountElement.innerText = '0' + (bombAmount - flags);
+            let currentRemaining = bombAmount - flags;
+            bombCountElement.innerText = currentRemaining < 10 ? '0' + currentRemaining : currentRemaining;
         }
     }
 }
@@ -139,7 +175,7 @@ function click(square) {
         return;
     }
     
-    // if empty (0) -> check neighbors
+    // if empty -> check neighbors
     checkSquare(square, currentId);
     
     square.classList.add('checked');

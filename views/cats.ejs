@@ -4,13 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Cats | WuiWuiCafe</title>
-    <meta name="description" content="WuiWuiCafe - The coziest cat cafe in Riga. Play games, meet our cats, and join our fluffy community!">
-    <meta name="keywords" content="cat cafe, Riga, cats, games, catsweeper, quiz, wuiwuicafe">
-    <meta name="author" content="Polina">
-    
-    <meta property="og:title" content="WuiWuiCafe | Home">
-    <meta property="og:description" content="Come for the coffee, stay for the purrs. Play games and meet our cats!">
-    <meta property="og:type" content="website">
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -19,56 +12,69 @@
     <nav>
         <div class="logo">WuiWuiCafe</div>
         <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/cats" class="active">Our Cats</a>
-            <a href="/games">Games</a>
+            <a href="/"><%= __("nav_home") %></a>
+            <a href="/cats" class="active"><%= __("nav_cats") %></a>
+            <a href="/games"><%= __("nav_games") %></a>
             
-            <% if (user) { %>
+            <% if (typeof user !== 'undefined' && user) { %>
                 <div class="user-menu">
-                    <span class="user-name"> <%= user.username %></span>
-                    <a href="/logout" class="btn-logout">Logout</a>
+                    <span class="user-name"><%= user.username %></span>
+                    <a href="/logout" class="btn-logout"><%= __("nav_logout") %></a>
                 </div>
             <% } else { %>
-                <a href="/login">Login</a>
-                <a href="/register" class="btn-signup">Sign Up</a>
+                <a href="/login"><%= __("nav_login") %></a>
+                <a href="/register" class="btn-signup"><%= __("nav_signup") %></a>
             <% } %>
+
+            <div class="lang-switcher">
+                <a href="/change-lang/en" class="<%= locale === 'en' ? 'lang-active' : '' %>">EN</a>
+                <span>|</span>
+                <a href="/change-lang/lv" class="<%= locale === 'lv' ? 'lang-active' : '' %>">LV</a>
+            </div>
+
+            <div class="accessibility-toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="accessibility-checkbox" onclick="toggleAccessibility()">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
         </div>
     </nav>
 
     <header class="page-header">
-        <h1>Meet Our Stars</h1>
-        <p>They run this place, we just work here.</p>
+        <h1><%= __("cats_stars_title") %></h1>
+        <p><%= __("cats_stars_sub") %></p>
     </header>
 
     <main class="cats-container">
+        <h2 class="visually-hidden" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;"><%= __("cats_list_hidden") %></h2>
         
         <% cats.forEach(function(cat, index) { %>
             <section class="cat-section" id="cat-<%= index %>">
                 
                 <div class="cat-visual">
                     <div class="slider-wrapper">
-                        <button class="slider-btn prev" onclick="moveSlide('<%= index %>', -1)">❮</button>
+                        <button class="slider-btn prev" onclick="moveSlide('<%= index %>', -1)">&#10094;</button>
                         
                         <div class="slides-container" id="slides-<%= index %>">
                             <% cat.images.forEach(function(img, imgIndex) { %>
-                                <img src="<%= img %>" class="slide-img <%= imgIndex === 0 ? 'active' : '' %>" alt="<%= cat.name %>">
+                                <img src="<%= img %>" class="slide-img <%= imgIndex === 0 ? 'active' : '' %>" alt="Photo of <%= cat.name %> - image <%= imgIndex + 1 %>">
                             <% }); %>
                         </div>
 
-                        <button class="slider-btn next" onclick="moveSlide('<%= index %>', 1)">❯</button>
+                        <button class="slider-btn next" onclick="moveSlide('<%= index %>', 1)">&#10095;</button>
                     </div>
                 </div>
 
                 <div class="cat-details">
                     <div class="details-content">
-                        <h2><%= cat.name %> <span class="age-tag"><%= cat.age %></span></h2>
-                        <p><%= cat.description %></p>
+                        <h2><%= cat.name %> <span class="age-tag"><%= __("cat_age_" + cat.name.toLowerCase()) %></span></h2>
+                        <p><%= __("cat_desc_" + cat.name.toLowerCase()) %></p>
                         
                         <button class="btn-like" onclick="toggleLike(this, '<%= cat.name %>')">
                             <span class="heart-icon">❤</span> 
-                            <span class="like-text">Like <%= cat.name %></span>
+                            <span class="like-text"><%= __("cat_like") %> <%= cat.name %></span>
                         </button>
-
                     </div>
                 </div>
 
@@ -78,11 +84,10 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 WuiWuiCafe Project.</p>
+        <p><%= __("footer_copy") %></p>
     </footer>
 
     <script>
-        // images slider
         function moveSlide(catIndex, direction) {
             const container = document.getElementById(`slides-${catIndex}`);
             const slides = container.getElementsByClassName('slide-img');
@@ -103,23 +108,38 @@
             slides[newIndex].classList.add('active');
         }
 
-        // like button amination
         function toggleLike(btn, catName) {
             btn.classList.toggle('liked');
-            
             const textSpan = btn.querySelector('.like-text');
             const heartSpan = btn.querySelector('.heart-icon');
 
             if (btn.classList.contains('liked')) {
-                textSpan.innerText = "Liked!";
+                textSpan.innerText = "<%= __('cat_liked') %>";
                 heartSpan.innerText = "💖";
             } else {
-                textSpan.innerText = "Like " + catName;
+                textSpan.innerText = "<%= __('cat_like') %> " + catName;
                 heartSpan.innerText = "❤";
             }
         }
+
+        function toggleAccessibility() {
+            const checkbox = document.getElementById('accessibility-checkbox');
+            if (checkbox.checked) {
+                document.body.classList.add('accessibility-mode');
+                localStorage.setItem('accessibilityMode', 'enabled');
+            } else {
+                document.body.classList.remove('accessibility-mode');
+                localStorage.setItem('accessibilityMode', 'disabled');
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const checkbox = document.getElementById('accessibility-checkbox');
+            if (localStorage.getItem('accessibilityMode') === 'enabled') {
+                document.body.classList.add('accessibility-mode');
+                if (checkbox) checkbox.checked = true;
+            }
+        });
     </script>
-
 </body>
-
 </html>

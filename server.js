@@ -1,8 +1,10 @@
 // SERVER CONFIGURATION & SETUP 
+const i18n = require('i18n');
+const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const path = require('path');
+const cookieParser = require('cookie-parser'); 
 const axios = require('axios'); 
 const bcrypt = require('bcrypt');
 const db = require('./database');
@@ -10,11 +12,39 @@ const db = require('./database');
 const app = express();
 const PORT = 3000;
 
-// MIDDLEWARE SETUP 
+// MIDDLEWARE SETUP
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+i18n.configure({
+    locales: ['en', 'lv'],
+    directory: path.join(__dirname, 'locales', 'locales'), 
+    defaultLocale: 'en',
+    cookie: 'lang',
+    queryParameter: 'lang',
+    updateFiles: false
+});
+
+app.use(i18n.init);
+
+app.use((req, res, next) => {
+    res.locals.locale = req.getLocale();
+    next();
+});
+
+app.get('/change-lang/:lang', (req, res) => {
+    const targetLang = req.params.lang;
+    if (['en', 'lv'].includes(targetLang)) {
+        res.cookie('lang', targetLang, { maxAge: 900000, httpOnly: true });
+        req.setLocale(targetLang);
+    }
+    res.redirect(req.get('referer') || '/');
+});
+
+// VIEW ENGINE SETUP
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // SESSION MANAGEMENT 
 app.use(session({
@@ -45,8 +75,7 @@ const myCats = [
     }
 ];
 
-//ROUTES
-
+// ROUTES
 // HOME PAGE & API INTEGRATION 
 app.get('/', async (req, res) => {
     let randomImages = [];
@@ -72,17 +101,13 @@ app.get('/cats', (req, res) => {
 });
 
 // GAMES SECTION
-
-// main games menu
 app.get('/games', (req, res) => {
-    // acces control, bc games for only login users
     if (!req.session.user) {
         return res.redirect('/login');
     }
     res.render('games', { user: req.session.user });
 });
 
-// minesweeper game
 app.get('/games/catsweeper', (req, res) => {
     if (!req.session.user) {
         return res.redirect('/login');
@@ -91,17 +116,12 @@ app.get('/games/catsweeper', (req, res) => {
 });
 
 // AUTHENTICATION
-
-// register page
 app.get('/register', (req, res) => {
     res.render('register', { user: req.session.user });
 });
 
-// handle registration
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
-    
-    // hashing password before storage
     const hashedPassword = await bcrypt.hash(password, 10);
 
     db.run(`INSERT INTO users (username, password) VALUES (?, ?)`, [username, hashedPassword], (err) => {
@@ -112,12 +132,10 @@ app.post('/register', async (req, res) => {
     });
 });
 
-// login page
 app.get('/login', (req, res) => {
     res.render('login', { user: req.session.user, error: null });
 });
 
-// handle login
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
@@ -126,7 +144,6 @@ app.post('/login', (req, res) => {
             return res.render('login', { user: null, error: "User not found!" });
         }
 
-        // cmparing input password with stored hash
         const validPassword = await bcrypt.compare(password, user.password);
         
         if (validPassword) {
@@ -138,7 +155,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-// logout
 app.get('/logout', (req, res) => {
     req.session.destroy(() => {
         res.redirect('/');

@@ -1,4 +1,3 @@
-/* font */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;600;700&display=swap');
 
 /* colors */
@@ -49,16 +48,39 @@ nav {
     font-weight: 600;
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .nav-links a {
     color: var(--text-dark);
-    margin-left: 25px;
     font-weight: 700;
     font-size: 1.1rem;
     transition: color 0.3s ease;
+    margin: 0;
 }
 
 .nav-links a:hover, .nav-links a.active {
     color: var(--glass-white);
+}
+
+/* LANG SWITCHER */
+.lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+}
+.lang-switcher a {
+    color: var(--text-dark);
+}
+.lang-switcher span {
+    color: var(--text-dark);
+}
+.lang-switcher a.lang-active {
+    color: var(--glass-white) !important;
 }
 
 /* sign up button */
@@ -95,12 +117,7 @@ nav {
 
 .btn:hover { transform: scale(1.05); }
 
-
-/* =========================================
-   HOME page
-   ========================================= */
-
-/* welcome */
+/* HOME page */
 .main-welcome {
     text-align: center;
     font-size: 4rem;
@@ -115,7 +132,6 @@ nav {
     font-weight: bold;
 }
 
-/* ABOUT US */
 .about-strip {
     width: 100%;
     background: white;
@@ -155,12 +171,11 @@ nav {
     text-align: right;
 }
 
-/* API (rand cats) */
 .api-container {
     padding: 60px 20px;
     text-align: center;
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 0 auto 40px auto; 
 }
 
 .api-header h3 { font-size: 2.5rem; color: var(--accent); margin-bottom: 5px; }
@@ -206,11 +221,7 @@ nav {
     color: white;
 }
 
-
-/* =========================================
-   OUR CATS page
-   ========================================= */
-
+/* OUR CATS page */
 .page-header {
     text-align: center;
     margin-top: 40px;
@@ -268,7 +279,6 @@ nav {
     color: var(--text-dark);
 }
 
-/* LIKE BUTTON */
 .btn-like {
     margin-top: 20px;
     background: transparent;
@@ -297,7 +307,6 @@ nav {
     transform: scale(1.1); 
 }
 
-/* heart biting animation */
 @keyframes heart-beat {
     0% { transform: scale(1); }
     50% { transform: scale(1.3); }
@@ -362,31 +371,73 @@ nav {
 .prev { left: 15px; }
 .next { right: 15px; }
 
+/* GAMES PAGE */
+.games-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.game-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.game-card h2 {
+    color: var(--accent);
+    margin-top: 0;
+    font-size: 1.8rem;
+    font-family: 'Fredoka', sans-serif;
+}
+
+.game-card.locked {
+    opacity: 0.7;
+}
+.game-card.locked h2 {
+    color: gray;
+}
+
+/* CATSWEEPER BTNS */
+.btn-toggle {
+    padding: 8px 16px;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+    border: 2px solid var(--text-light);
+    background: white;
+    color: var(--text-dark);
+}
+.btn-toggle.active {
+    border: 2px solid var(--accent);
+    background: var(--accent);
+    color: white;
+}
 
 /* FOOTER */
 footer {
+    clear: both; 
     text-align: center;
-    padding: 30px;
+    padding: 40px 20px; 
     background: white;
     color: var(--text-dark);
-    margin-top: 50px;
+    margin-top: 60px; 
     border-radius: 30px 30px 0 0;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-    nav { flex-direction: column; gap: 15px; }
-    .nav-links a { margin: 0 10px; font-size: 1rem; }
-    .main-welcome { font-size: 2.5rem; }
-    .about-container { flex-direction: column; text-align: center; }
-    .about-text { text-align: center; }
-    .about-action { text-align: center; margin-top: 20px; }
-    .cat-section, .cat-section:nth-child(even) {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-    .slider-wrapper { height: 250px; }
+    position: relative;
+    z-index: 10;
 }
 
 /* USER MENU */
@@ -398,7 +449,6 @@ footer {
     padding: 5px 5px 5px 15px;
     border-radius: 50px;
     border: 2px solid var(--primary-pink);
-    margin-left: 20px;
     box-shadow: 0 4px 10px rgba(255, 183, 197, 0.2);
 }
 
@@ -570,14 +620,73 @@ footer {
     object-fit: cover;
 }
 
-/* MOBILE RESPONSIVENESS */
+/* ACCESSIBILITY & FOCUS STYLES */
+a:focus-visible, 
+button:focus-visible, 
+.quiz-option:focus-visible {
+    outline: 3px dashed var(--accent);
+    outline-offset: 4px;
+    box-shadow: 0 0 0 4px rgba(255, 64, 129, 0.4);
+}
 
+body.accessibility-mode {
+    filter: grayscale(100%) contrast(120%);
+    --bg-color: #ffffff; 
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider-toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #5d4037; 
+    transition: .3s;
+    border-radius: 24px;
+    border: 2px solid white;
+}
+
+.slider-toggle:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider-toggle {
+    background-color: var(--accent);
+}
+
+input:checked + .slider-toggle:before {
+    transform: translateX(22px);
+}
+
+input:focus-visible + .slider-toggle {
+    outline: 3px dashed var(--accent);
+    outline-offset: 4px;
+}
+
+/* MOBILE RESPONSIVENESS */
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
         padding: 15px;
-        position: relative;
-        top: auto;
     }
 
     .logo {
@@ -591,14 +700,7 @@ footer {
         width: 100%;
         gap: 15px; 
     }
-
-    .nav-links a {
-        margin: 0; 
-        font-size: 1.2rem;
-        display: block;
-    }
     
-    /* buttons home */
     .btn-signup, .btn-logout, .user-menu {
         margin: 0 !important; 
         width: 100%;          
@@ -613,7 +715,6 @@ footer {
         padding: 10px 20px;
     }
 
-    /* home pg */
     .main-welcome {
         font-size: 2.5rem;
         margin-top: 30px;
@@ -626,8 +727,8 @@ footer {
     }
     
     .about-text { margin-bottom: 20px; }
+    .about-action { text-align: center; margin-top: 20px; }
     
-    /* our cats pic */
     .cat-section, .cat-section:nth-child(even) {
         flex-direction: column !important; 
         gap: 20px;
@@ -646,22 +747,8 @@ footer {
     
     .cat-details { width: 100%; }
 
-    /* game page */
-    .games-grid {
-        flex-direction: column !important;
-        align-items: center;
-    }
-
-    .game-card {
-        width: 100% !important; 
-        max-width: 100% !important;
-        margin-bottom: 20px;
-    }
-
-    /* sweeper */
     .minesweeper-container {
         padding: 10px;
         transform: scale(0.9); 
     }
-
 }

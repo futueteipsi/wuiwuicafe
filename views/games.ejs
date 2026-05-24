@@ -3,16 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Game Zone | WuiWuiCafe</title>
-    <meta name="description" content="WuiWuiCafe - The coziest cat cafe in Riga. Play games, meet our cats, and join our fluffy community!">
-    <meta name="keywords" content="cat cafe, Riga, cats, games, catsweeper, quiz, wuiwuicafe">
-    <meta name="author" content="Polina">
-    
-    <meta property="og:title" content="WuiWuiCafe | Home">
-    <meta property="og:description" content="Come for the coffee, stay for the purrs. Play games and meet our cats!">
-    <meta property="og:type" content="website">
     <link rel="stylesheet" href="/css/style.css">
     <style>
-        /* centering */
         .center-content {
             text-align: center;
             display: flex;
@@ -25,38 +17,74 @@
     <nav>
         <div class="logo">WuiWuiCafe</div>
         <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/cats">Our Cats</a>
-            <a href="/games" class="active">Games</a>
-            <div class="user-menu">
-                <span class="user-name"><%= user.username %></span>
-                <a href="/logout" class="btn-logout">Logout</a>
+            <a href="/"><%= __("nav_home") %></a>
+            <a href="/cats"><%= __("nav_cats") %></a>
+            <a href="/games" class="active"><%= __("nav_games") %></a>
+            
+            <% if (typeof user !== 'undefined' && user) { %>
+                <div class="user-menu">
+                    <span class="user-name"><%= user.username %></span>
+                    <a href="/logout" class="btn-logout"><%= __("nav_logout") %></a>
+                </div>
+            <% } %>
+
+            <div class="lang-switcher">
+                <a href="/change-lang/en" class="<%= locale === 'en' ? 'lang-active' : '' %>">EN</a>
+                <span>|</span>
+                <a href="/change-lang/lv" class="<%= locale === 'lv' ? 'lang-active' : '' %>">LV</a>
+            </div>
+
+            <div class="accessibility-toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="accessibility-checkbox" onclick="toggleAccessibility()">
+                    <span class="slider-toggle"></span>
+                </label>
             </div>
         </div>
     </nav>
 
     <div class="hero center-content">
-        <h1>Game Zone</h1>
-        <p>Choose your game and set a high score!</p>
+        <h1><%= __("game_zone_title") %></h1>
+        <p><%= __("game_zone_subtitle") %></p>
 
-        <div class="games-grid" style="display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap;">
+        <div class="games-grid">
             
-            <div class="game-card" style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); max-width: 300px;">
-                <h3 style="color: var(--accent); margin-top: 0;">CatSweeper</h3>
-                <p>Classic minesweeper but cuter. Find all safe spots without touching a bomb.</p>
+            <div class="game-card">
+                <h2>CatSweeper</h2>
+                <p><%= __("game_desc_catsweeper") %></p>
                 <br>
-                <a href="/games/catsweeper" class="btn primary">Play Now</a>
+                <a href="/games/catsweeper" class="btn primary"><%= __("game_play_now") %></a>
             </div>
 
-            <div class="game-card" style="background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); max-width: 300px; opacity: 0.7;">
-                <h3 style="color: gray; margin-top: 0;">Memory Cat</h3>
-                <p>Find matching pairs. <br>(Coming Soon)</p>
+            <div class="game-card locked">
+                <h2>Memory Cat</h2>
+                <p><%= __("game_desc_memory") %> <br>(<%= __("game_coming_soon") %>)</p>
                 <br>
-                <button class="btn" disabled style="background: #ccc; cursor: not-allowed;">Locked</button>
+                <button class="btn" disabled style="background: #ccc; cursor: not-allowed;"><%= __("game_locked") %></button>
             </div>
 
         </div>
     </div>
-</body>
+    
+    <script>
+        function toggleAccessibility() {
+            const checkbox = document.getElementById('accessibility-checkbox');
+            if (checkbox.checked) {
+                document.body.classList.add('accessibility-mode');
+                localStorage.setItem('accessibilityMode', 'enabled');
+            } else {
+                document.body.classList.remove('accessibility-mode');
+                localStorage.setItem('accessibilityMode', 'disabled');
+            }
+        }
 
+        document.addEventListener("DOMContentLoaded", function() {
+            const checkbox = document.getElementById('accessibility-checkbox');
+            if (localStorage.getItem('accessibilityMode') === 'enabled') {
+                document.body.classList.add('accessibility-mode');
+                if (checkbox) checkbox.checked = true;
+            }
+        });
+    </script>
+</body>
 </html>

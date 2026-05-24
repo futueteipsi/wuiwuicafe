@@ -7,37 +7,84 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+
     <nav>
         <div class="logo">WuiWuiCafe</div>
         <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/cats">Our Cats</a>
-            <a href="/register" class="btn-signup">Sign Up</a>
+            <a href="/"><%= __("nav_home") %></a>
+            <a href="/cats"><%= __("nav_cats") %></a>
+            <a href="/games"><%= __("nav_games") %></a>
+            
+            <% if (typeof user !== 'undefined' && user) { %>
+                <div class="user-menu">
+                    <span class="user-name"><%= user.username %></span>
+                    <a href="/logout" class="btn-logout"><%= __("nav_logout") %></a>
+                </div>
+            <% } else { %>
+                <a href="/login" class="active"><%= __("nav_login") %></a>
+                <a href="/register" class="btn-signup"><%= __("nav_signup") %></a>
+            <% } %>
+
+            <div class="lang-switcher">
+                <a href="/change-lang/en" class="<%= locale === 'en' ? 'lang-active' : '' %>">EN</a>
+                <span>|</span>
+                <a href="/change-lang/lv" class="<%= locale === 'lv' ? 'lang-active' : '' %>">LV</a>
+            </div>
+
+            <div class="accessibility-toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="accessibility-checkbox" onclick="toggleAccessibility()">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
         </div>
     </nav>
 
-    <div class="hero auth-container">
-        <h2>Welcome Back!</h2>
+    <div class="auth-container">
+        <h2><%= __("auth_welcome") %></h2>
         
+        <% if (typeof error !== 'undefined' && error) { %>
+            <div class="error-message"><%= error %></div>
+        <% } %>
+
         <form action="/login" method="POST">
             <div class="form-group">
-                <label>Username:</label>
-                <input type="text" name="username" class="form-input" required>
+                <label for="username"><%= __("auth_user") %></label>
+                <input type="text" id="username" name="username" class="form-input" required>
             </div>
             
             <div class="form-group">
-                <label>Password:</label>
-                <input type="password" name="password" class="form-input" required>
+                <label for="password"><%= __("auth_pass") %></label>
+                <input type="password" id="password" name="password" class="form-input" required>
             </div>
             
-            <button type="submit" class="btn primary btn-full">Login</button>
+            <button type="submit" class="btn primary btn-full"><%= __("nav_login") %></button>
         </form>
-        
-        <% if (locals.error) { %>
-            <div class="error-message">
-                <%= error %>
-            </div>
-        <% } %>
+
+        <div class="auth-footer">
+            <%= __("auth_no_acc") %> <a href="/register"><%= __("auth_signup_here") %></a>
+        </div>
     </div>
+
+    <script>
+        function toggleAccessibility() {
+            const checkbox = document.getElementById('accessibility-checkbox');
+            if (checkbox.checked) {
+                document.body.classList.add('accessibility-mode');
+                localStorage.setItem('accessibilityMode', 'enabled');
+            } else {
+                document.body.classList.remove('accessibility-mode');
+                localStorage.setItem('accessibilityMode', 'disabled');
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const checkbox = document.getElementById('accessibility-checkbox');
+            if (localStorage.getItem('accessibilityMode') === 'enabled') {
+                document.body.classList.add('accessibility-mode');
+                if (checkbox) checkbox.checked = true;
+            }
+        });
+    </script>
 </body>
 </html>
