@@ -808,7 +808,7 @@ input:focus-visible + .slider-toggle {
     .burger-menu { display: flex; }
     .nav-links {
         display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: #e91e63; flex-direction: column; justify-content: center; gap: 20px; z-index: 2000;
+        background: #f25289; flex-direction: column; justify-content: center; gap: 20px; z-index: 2000;
     }
     .nav-links.show { display: flex; }
     .close-menu { display: block; background: none; border: none; color: white; font-size: 2.5rem; position: absolute; top: 20px; right: 20px; }
