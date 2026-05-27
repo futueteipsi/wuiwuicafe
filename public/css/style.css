@@ -756,10 +756,11 @@ input:focus-visible + .slider-toggle {
 .burger-menu {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
+    padding: 10px;
 }
 .burger-menu span {
     width: 25px; height: 3px; background: white; border-radius: 2px;
@@ -769,7 +770,7 @@ input:focus-visible + .slider-toggle {
     .burger-menu { display: flex; }
     
     .nav-links {
-        display: none; 
+        display: none;
         position: absolute;
         top: 70px; left: 0; width: 100%;
         background: var(--deep-pink);
@@ -779,64 +780,20 @@ input:focus-visible + .slider-toggle {
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     .nav-links.show { display: flex; }
-    
-    .btn-signup, .nav-links a {
-        display: block;
+
+    .nav-links a, .btn-signup, .btn-logout {
         width: 80%;
+        padding: 12px;
         text-align: center;
-        background: rgba(255,255,255,0.1);
-        padding: 10px;
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
+        color: white !important;
     }
-}
-
-@media (max-width: 768px) {
-    .main-welcome { font-size: 2rem !important; margin: 20px 0; }
-    .about-text h2 { font-size: 1.8rem; }
-    .about-text p { font-size: 1rem; }
     
-    .random-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 10px;
-    }
-    .random-card { height: 150px; }
-    
-    .games-grid { gap: 15px; }
-    .game-card { padding: 15px; width: 90%; }
-}
-
-.user-menu {
-    max-width: 150px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: flex;
-    flex-direction: column;
-    padding: 5px 15px !important;
-}
-.user-menu .user-name { font-size: 0.9rem; }
-.user-menu .btn-logout { font-size: 0.7rem; padding: 2px 8px; margin-top: 2px; }
-
-.burger-menu {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    padding: 10px;
-}
-.burger-menu span { width: 25px; height: 3px; background: white; border-radius: 2px; }
-
-@media (max-width: 768px) {
-    .burger-menu { display: flex; }
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 70px; left: 0; width: 100%;
-        background: var(--deep-pink);
+    .user-menu {
         flex-direction: column;
-        padding: 20px 0;
-        z-index: 999;
+        padding: 10px;
+        width: 80%;
+        background: rgba(255, 255, 255, 0.2);
     }
-    .nav-links.show { display: flex; }
 }
