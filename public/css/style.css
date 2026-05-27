@@ -740,71 +740,111 @@ input:focus-visible + .slider-toggle {
 
 /* MOBILE RESPONSIVENESS */
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        padding: 15px;
+    .menu-toggle {
+        display: block;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 2001;
+        position: relative;
     }
 
-    .logo {
-        margin-bottom: 15px;
+    .hamburger, .hamburger::before, .hamburger::after {
+        display: block;
+        background: var(--glass-white);
+        height: 3px;
+        width: 25px;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
     }
+    .hamburger { position: relative; }
+    .hamburger::before, .hamburger::after { content: ''; position: absolute; left: 0; }
+    .hamburger::before { top: -8px; }
+    .hamburger::after { top: 8px; }
+
+    .menu-toggle.open .hamburger { background: transparent; }
+    .menu-toggle.open .hamburger::before { transform: rotate(45deg); top: 0; }
+    .menu-toggle.open .hamburger::after { transform: rotate(-45deg); top: 0; }
+
+    nav {
+        flex-direction: row; 
+        justify-content: space-between;
+        padding: 15px 20px;
+        border-radius: 0 0 15px 15px; 
+    }
+
+    .logo { margin-bottom: 0; }
 
     .nav-links {
         display: flex;
-        flex-direction: column; 
-        align-items: center;
-        width: 100%;
-        gap: 15px; 
-    }
-    
-    .btn-signup, .btn-logout, .user-menu {
-        margin: 0 !important; 
-        width: 100%;          
-        max-width: 200px;
-        justify-content: center;
-        box-sizing: border-box;
-    }
-
-    .user-menu {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 20px;
-    }
-
-    .main-welcome {
-        font-size: 2.5rem;
-        margin-top: 30px;
-        padding: 0 10px;
-    }
-
-    .about-container {
         flex-direction: column;
-        text-align: center;
-    }
-    
-    .about-text { margin-bottom: 20px; }
-    .about-action { text-align: center; margin-top: 20px; }
-    
-    .cat-section, .cat-section:nth-child(even) {
-        flex-direction: column !important; 
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .cat-visual {
-        width: 100%; 
-        order: -1;   
+        position: fixed;
+        top: 0;
+        right: -100%; 
+        width: 70%; 
+        height: 100vh;
+        background: var(--accent); 
+        padding: 80px 30px 30px 30px;
+        gap: 25px;
+        box-sizing: border-box;
+        transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 2000;
+        align-items: flex-start; 
     }
 
-    .slider-wrapper {
-        height: 300px; 
+    .nav-links.open {
+        right: 0;
+    }
+
+    .nav-links a {
+        color: #ffffff !important;
+        font-size: 1.3rem;
+        width: auto;
+        text-align: left;
+    }
+
+    .lang-switcher, .accessibility-toggle-container {
+        margin-top: 10px;
+    }
+    .lang-switcher a, .lang-switcher span {
+        color: #ffffff !important;
+    }
+
+    .nav-links .mobile-user-menu {
+        display: flex;
+        flex-direction: column; 
+        background: transparent !important; 
+        border: none !important; 
+        box-shadow: none !important; 
+        padding: 0 !important;
+        align-items: flex-start;
+        gap: 10px;
         width: 100%;
     }
-    
-    .cat-details { width: 100%; }
 
-    .minesweeper-container {
-        padding: 10px;
-        transform: scale(0.9); 
+    .nav-links .mobile-user-menu .user-name {
+        color: #ffffff !important; 
+        font-size: 1.3rem;
+        padding: 0;
+    }
+
+    .nav-links .mobile-user-menu .btn-logout {
+        background: var(--deep-pink) !important;
+        color: white !important;
+        width: 100%;
+        max-width: 150px;
+        text-align: center;
+        padding: 8px 15px;
+        border-radius: 20px;
+    }
+
+    .nav-links .btn-signup {
+        background: white !important;
+        color: var(--accent) !important;
+        text-align: center;
+        width: 100%;
+        max-width: 150px;
     }
 }
