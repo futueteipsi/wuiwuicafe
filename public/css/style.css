@@ -863,8 +863,8 @@ input:focus-visible + .slider-toggle {
         display: inline-block !important;
         width: auto !important;
         min-width: 100px !important;
-        border: none !important; /* ПОЛНОСТЬЮ УБРАЛИ ОБВОДКУ */
-        box-shadow: none !important; /* Без лишних теней внутри овала */
+        border: none !important; 
+        box-shadow: none !important;
         transition: all 0.2s ease !important;
     }
 
