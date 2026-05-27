@@ -379,6 +379,23 @@ nav {
 .next { right: 15px; }
 
 /* GAMES PAGE */
+.games-page-title {
+    font-family: 'Fredoka', sans-serif;
+    text-align: center;
+    font-size: 4rem; 
+    color: var(--accent); 
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+.games-page-subtitle {
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    margin-top: 0; 
+    margin-bottom: 40px;
+}
+
 .games-grid {
     display: flex;
     justify-content: center;
@@ -674,7 +691,7 @@ body.accessibility-mode {
     position: absolute;
     cursor: pointer;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #5d4037; 
+    background-color: #fc81ab; 
     transition: .3s;
     border-radius: 24px;
     border: 2px solid white;
