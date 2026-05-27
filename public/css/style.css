@@ -822,7 +822,7 @@ input:focus-visible + .slider-toggle {
 
     .user-menu { background: none !important; border: none !important; box-shadow: none !important; gap: 5px; }
     .user-name { color: white !important; font-size: 1.1rem; }
-    .btn-logout { background: none !important; color: #ffcdd2 !important; text-decoration: underline; font-size: 0.8rem; }
+    .btn-logout { background: none !important; color: #ff8fa3 !important; text-decoration: underline; font-size: 0.8rem; }
 
     .games-grid { flex-direction: column; align-items: center; }
     .game-card { width: 90% !important; margin-bottom: 20px; }
