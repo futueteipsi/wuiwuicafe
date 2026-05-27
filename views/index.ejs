@@ -9,13 +9,20 @@
 <body>    
     <nav>
         <div class="logo">WuiWuiCafe</div>
-        <div class="nav-links">
+        
+        <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="nav-links" id="nav-menu">
             <a href="/" class="active"><%= __("nav_home") %></a>
             <a href="/cats"><%= __("nav_cats") %></a>
             <a href="/games"><%= __("nav_games") %></a>
             
             <% if (typeof user !== 'undefined' && user) { %>
-                <div class="user-menu">
+                <div class="user-menu mobile-user-menu">
                     <span class="user-name"><%= user.username %></span>
                     <a href="/logout" class="btn-logout"><%= __("nav_logout") %></a>
                 </div>
@@ -169,6 +176,20 @@
                     }, 100);
                 }
                 localStorage.removeItem('scrollToCats');
+            }
+        });
+    </script>
+    <script>
+        // Логика работы мобильного меню-бургера
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (menuBtn && navMenu) {
+                menuBtn.addEventListener('click', function() {
+                    menuBtn.classList.toggle('open');
+                    navMenu.classList.toggle('open');
+                });
             }
         });
     </script>
