@@ -10,15 +10,14 @@
 <body>
     <nav>
         <div class="logo">WuiWuiCafe</div>
-        
         <button class="burger-menu" onclick="toggleMenu()">
             <span></span><span></span><span></span>
         </button>
-    
         <div class="nav-links" id="nav-links">
-            <a href="/"><%= __("nav_home") %></a>
-            <a href="/cats"><%= __("nav_cats") %></a>
-            <a href="/games"><%= __("nav_games") %></a>
+            <button class="close-menu" onclick="toggleMenu()">&times;</button>
+            <a href="/" class="<%= (typeof page !== 'undefined' && page === 'home') ? 'active' : '' %>"><%= __("nav_home") %></a>
+            <a href="/cats" class="<%= (typeof page !== 'undefined' && page === 'cats') ? 'active' : '' %>"><%= __("nav_cats") %></a>
+            <a href="/games" class="<%= (typeof page !== 'undefined' && page === 'games') ? 'active' : '' %>"><%= __("nav_games") %></a>
             
             <% if (typeof user !== 'undefined' && user) { %>
                 <div class="user-menu">
@@ -35,39 +34,10 @@
                 <span>|</span>
                 <a href="/change-lang/lv" class="<%= locale === 'lv' ? 'lang-active' : '' %>">LV</a>
             </div>
-    
-            <div class="accessibility-toggle-container">
-                <label class="switch">
-                    <input type="checkbox" id="accessibility-checkbox" onclick="toggleAccessibility()">
-                    <span class="slider-toggle"></span>
-                </label>
-            </div>
         </div>
     </nav>
-    
     <script>
-        function toggleMenu() {
-            document.getElementById('nav-links').classList.toggle('show');
-        }
-    
-        function toggleAccessibility() {
-            const checkbox = document.getElementById('accessibility-checkbox');
-            if (checkbox.checked) {
-                document.body.classList.add('accessibility-mode');
-                localStorage.setItem('accessibilityMode', 'enabled');
-            } else {
-                document.body.classList.remove('accessibility-mode');
-                localStorage.setItem('accessibilityMode', 'disabled');
-            }
-        }
-    
-        document.addEventListener("DOMContentLoaded", function() {
-            const checkbox = document.getElementById('accessibility-checkbox');
-            if (localStorage.getItem('accessibilityMode') === 'enabled') {
-                document.body.classList.add('accessibility-mode');
-                if (checkbox) checkbox.checked = true;
-            }
-        });
+        function toggleMenu() { document.getElementById('nav-links').classList.toggle('show'); }
     </script>
 
     <header class="page-header">
