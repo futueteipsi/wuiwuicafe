@@ -225,6 +225,7 @@ nav {
 .btn-refresh:hover {
     background: var(--accent);
     color: white;
+    transform: scale(1.05);
 }
 
 /* OUR CATS page */
