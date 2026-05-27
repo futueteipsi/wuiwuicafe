@@ -11,6 +11,10 @@
     --text-light: #8d6e63;     
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* BODY */
 body {
     font-family: 'Quicksand', sans-serif;
@@ -101,12 +105,14 @@ nav {
 /* buttons */
 .btn {
     display: inline-block;
-    padding: 12px 35px;
+    padding: 15px 45px;
     margin: 10px;
     border-radius: 50px;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     transition: transform 0.2s;
+    border: none;
+    cursor: pointer;
 }
 
 .btn.primary {
@@ -209,7 +215,7 @@ nav {
     text-decoration: none;
     color: var(--accent);
     border: 2px solid var(--accent);
-    padding: 10px 30px;
+    padding: 15px 45px;
     border-radius: 30px;
     font-weight: bold;
     transition: all 0.3s;
