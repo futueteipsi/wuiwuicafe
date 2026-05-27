@@ -818,56 +818,58 @@ input:focus-visible + .slider-toggle {
     }
 
     .nav-links .mobile-user-menu {
-        display: flex;
-        flex-direction: column; 
-        background: transparent !important; 
-        border: none !important; 
-        box-shadow: none !important; 
-        padding: 0 !important;
-        align-items: flex-start;
-        gap: 12px; 
-        width: 100%;
-        margin-top: 15px; 
-        box-sizing: border-box;
+        display: inline-flex !important; /* Делаем контейнер по ширине контента */
+        flex-direction: column !important; /* Выстраиваем ник и кнопку сверху вниз */
+        align-items: center !important; /* Центрируем ник и кнопку внутри овала */
+        gap: 10px !important; /* Отступ между никнеймом и кнопкой внутри овала */
+        
+        /* Возвращаем десктопные стили для всего общего контейнера */
+        background: white !important; 
+        padding: 15px 20px !important; /* Хорошие внутренние отступы со всех сторон */
+        border-radius: 25px !important; /* Красивое общее скругление контейнера */
+        border: 2px solid var(--primary-pink) !important;
+        box-shadow: 0 4px 10px rgba(255, 183, 197, 0.2) !important;
+        
+        width: auto !important;
+        max-width: 90% !important; /* Чтобы овал не упирался в края экрана */
+        margin-top: 10px !important;
+        margin-bottom: 5px !important;
+        box-sizing: border-box !important;
     }
 
     .nav-links .mobile-user-menu .user-name {
-        background: white !important;
-        color: var(--accent) !important; 
+        color: var(--accent) !important; /* Фирменный розовый цвет */
         font-family: 'Fredoka', sans-serif;
         font-weight: bold;
-        font-size: 1.1rem;
-        padding: 8px 20px; 
-        border-radius: 50px; 
-        border: 2px solid var(--primary-pink);
-        display: inline-block;
-        max-width: 100%; 
-        word-break: break-all; 
-        box-shadow: 0 4px 10px rgba(255, 183, 197, 0.2);
-        box-sizing: border-box;
+        font-size: 1.1rem !important;
+        background: transparent !important; /* Убираем фоны, так как фон теперь общий белый */
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        text-align: center !important;
+        width: 100% !important;
+        word-break: break-all; /* Аккуратный перенос длинной почты */
     }
 
     .nav-links .mobile-user-menu .btn-logout {
-        background: var(--deep-pink) !important;
+        background: var(--deep-pink) !important; /* Наш десктопный розовый */
         color: white !important;
-        font-size: 1rem;
-        font-weight: bold;
-        padding: 10px 25px; 
-        border-radius: 50px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        width: auto;
-        min-width: 120px; 
-        border: 2px solid #ffffff !important; 
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        transition: all 0.2s ease;
-        box-sizing: border-box;
+        font-size: 0.95rem !important;
+        font-weight: bold !important;
+        padding: 8px 25px !important; /* Удобный размер для нажатия */
+        border-radius: 20px !important; /* Округлые края кнопки */
+        text-align: center !important;
+        text-decoration: none !important;
+        display: inline-block !important;
+        width: auto !important;
+        min-width: 100px !important;
+        border: none !important; /* ПОЛНОСТЬЮ УБРАЛИ ОБВОДКУ */
+        box-shadow: none !important; /* Без лишних теней внутри овала */
+        transition: all 0.2s ease !important;
     }
 
     .nav-links .mobile-user-menu .btn-logout:active {
         background: var(--accent) !important;
-        transform: scale(0.98);
     }
     
     .nav-links .btn-signup {
