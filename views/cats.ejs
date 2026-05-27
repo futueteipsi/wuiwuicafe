@@ -8,16 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <nav>
         <div class="logo">WuiWuiCafe</div>
-        <div class="nav-links">
+        
+        <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">
+            <span class="hamburger"></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
             <a href="/"><%= __("nav_home") %></a>
             <a href="/cats" class="active"><%= __("nav_cats") %></a>
             <a href="/games"><%= __("nav_games") %></a>
             
             <% if (typeof user !== 'undefined' && user) { %>
-                <div class="user-menu">
+                <div class="user-menu mobile-user-menu">
                     <span class="user-name"><%= user.username %></span>
                     <a href="/logout" class="btn-logout"><%= __("nav_logout") %></a>
                 </div>
@@ -40,7 +44,6 @@
             </div>
         </div>
     </nav>
-
     <header class="page-header">
         <h1><%= __("cats_stars_title") %></h1>
         <p><%= __("cats_stars_sub") %></p>
@@ -140,6 +143,14 @@
                 if (checkbox) checkbox.checked = true;
             }
         });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navLinks.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        }
     </script>
 </body>
 </html>
