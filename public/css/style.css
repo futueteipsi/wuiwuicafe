@@ -738,6 +738,11 @@ input:focus-visible + .slider-toggle {
     outline-offset: 4px;
 }
 
+
+.menu-toggle {
+    display: none;
+}
+
 /* MOBILE RESPONSIVENESS */
 @media (max-width: 768px) {
     .menu-toggle {
