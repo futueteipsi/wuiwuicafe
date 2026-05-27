@@ -159,5 +159,18 @@
             }
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (localStorage.getItem('scrollToCats') === 'true') {
+                const catsSection = document.getElementById('random-cats');
+                if (catsSection) {
+                    setTimeout(() => {
+                        catsSection.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                }
+                localStorage.removeItem('scrollToCats');
+            }
+        });
+    </script>
 </body>
 </html>
