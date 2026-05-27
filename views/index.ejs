@@ -9,17 +9,10 @@
 <body>    
     <nav>
         <div class="logo">WuiWuiCafe</div>
-        
-        <button class="burger-menu" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </button>
-    
-        <div class="nav-links" id="nav-links">
-            <button class="close-menu" onclick="toggleMenu()">&times;</button>
-            
-            <a href="/" class="<%= (typeof page !== 'undefined' && page === 'home') ? 'active' : '' %>"><%= __("nav_home") %></a>
-            <a href="/cats" class="<%= (typeof page !== 'undefined' && page === 'cats') ? 'active' : '' %>"><%= __("nav_cats") %></a>
-            <a href="/games" class="<%= (typeof page !== 'undefined' && page === 'games') ? 'active' : '' %>"><%= __("nav_games") %></a>
+        <div class="nav-links">
+            <a href="/" class="active"><%= __("nav_home") %></a>
+            <a href="/cats"><%= __("nav_cats") %></a>
+            <a href="/games"><%= __("nav_games") %></a>
             
             <% if (typeof user !== 'undefined' && user) { %>
                 <div class="user-menu">
@@ -30,8 +23,22 @@
                 <a href="/login"><%= __("nav_login") %></a>
                 <a href="/register" class="btn-signup"><%= __("nav_signup") %></a>
             <% } %>
+
+            <div class="lang-switcher">
+                <a href="/change-lang/en" class="<%= locale === 'en' ? 'lang-active' : '' %>">EN</a>
+                <span>|</span>
+                <a href="/change-lang/lv" class="<%= locale === 'lv' ? 'lang-active' : '' %>">LV</a>
+            </div>
+
+            <div class="accessibility-toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="accessibility-checkbox" onclick="toggleAccessibility()">
+                    <span class="slider-toggle"></span>
+                </label>
+            </div>
         </div>
     </nav>
+
     <h1 class="main-welcome"><%= __("welcome_title") %> <span class="highlight">WuiWuiCafe</span></h1>
 
     <section class="about-strip">
