@@ -752,3 +752,40 @@ input:focus-visible + .slider-toggle {
         transform: scale(0.9); 
     }
 }
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.burger-menu span {
+    width: 25px; height: 3px; background: white; border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+    .burger-menu { display: flex; }
+    
+    .nav-links {
+        display: none; 
+        position: absolute;
+        top: 70px; left: 0; width: 100%;
+        background: var(--deep-pink);
+        flex-direction: column;
+        padding: 20px 0;
+        gap: 15px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .nav-links.show { display: flex; }
+    
+    .btn-signup, .nav-links a {
+        display: block;
+        width: 80%;
+        text-align: center;
+        background: rgba(255,255,255,0.1);
+        padding: 10px;
+        border-radius: 10px;
+    }
+}
