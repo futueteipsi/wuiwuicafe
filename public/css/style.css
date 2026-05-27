@@ -825,14 +825,16 @@ input:focus-visible + .slider-toggle {
         box-shadow: none !important; 
         padding: 0 !important;
         align-items: flex-start;
-        gap: 10px;
+        gap: 15px;
         width: 100%;
+        margin-top: 10px;
     }
 
     .nav-links .mobile-user-menu .user-name {
         color: #ffffff !important; 
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         padding: 0;
+        word-break: break-all;
     }
 
     .nav-links .mobile-user-menu .btn-logout {
@@ -841,8 +843,11 @@ input:focus-visible + .slider-toggle {
         width: 100%;
         max-width: 150px;
         text-align: center;
-        padding: 8px 15px;
+        padding: 10px 15px;
         border-radius: 20px;
+        border: 2px solid #ffffff !important; 
+        font-weight: bold;
+        box-sizing: border-box;
     }
 
     .nav-links .btn-signup {
