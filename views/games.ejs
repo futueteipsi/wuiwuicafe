@@ -8,11 +8,14 @@
 <body>
     <nav>
         <div class="logo">WuiWuiCafe</div>
+        
         <button class="burger-menu" onclick="toggleMenu()">
             <span></span><span></span><span></span>
         </button>
+    
         <div class="nav-links" id="nav-links">
             <button class="close-menu" onclick="toggleMenu()">&times;</button>
+            
             <a href="/" class="<%= (typeof page !== 'undefined' && page === 'home') ? 'active' : '' %>"><%= __("nav_home") %></a>
             <a href="/cats" class="<%= (typeof page !== 'undefined' && page === 'cats') ? 'active' : '' %>"><%= __("nav_cats") %></a>
             <a href="/games" class="<%= (typeof page !== 'undefined' && page === 'games') ? 'active' : '' %>"><%= __("nav_games") %></a>
@@ -26,17 +29,8 @@
                 <a href="/login"><%= __("nav_login") %></a>
                 <a href="/register" class="btn-signup"><%= __("nav_signup") %></a>
             <% } %>
-    
-            <div class="lang-switcher">
-                <a href="/change-lang/en" class="<%= locale === 'en' ? 'lang-active' : '' %>">EN</a>
-                <span>|</span>
-                <a href="/change-lang/lv" class="<%= locale === 'lv' ? 'lang-active' : '' %>">LV</a>
-            </div>
         </div>
     </nav>
-    <script>
-        function toggleMenu() { document.getElementById('nav-links').classList.toggle('show'); }
-    </script>
 
     <div class="hero center-content">
         <h1><%= __("game_zone_title") %></h1>
