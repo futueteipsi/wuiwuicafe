@@ -29,42 +29,13 @@ h1, h2, h3, .logo {
 a { text-decoration: none; }
 
 /* MENU NAVIGATION */
-nav {
-    background: var(--deep-pink);
-    padding: 15px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 20px rgba(255, 183, 197, 0.4);
-    border-radius: 0 0 25px 25px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+nav { background: #ff8fa3; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+.logo { font-size: 1.8rem; color: white; }
+.nav-links { display: flex; align-items: center; gap: 20px; }
+.nav-links a { color: #5d4037; font-weight: 700; font-size: 1.1rem; }
+.nav-links a.active { color: white; border-bottom: 2px solid white; }
 
-.logo {
-    font-size: 1.8rem;
-    color: var(--glass-white);
-    font-weight: 600;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.nav-links a {
-    color: var(--text-dark);
-    font-weight: 700;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-    margin: 0;
-}
-
-.nav-links a:hover, .nav-links a.active {
-    color: var(--glass-white);
-}
+.burger-menu, .close-menu { display: none; }
 
 /* LANG SWITCHER */
 .lang-switcher {
@@ -684,146 +655,25 @@ input:focus-visible + .slider-toggle {
 
 /* MOBILE RESPONSIVENESS */
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        padding: 15px;
-    }
 
-    .logo {
-        margin-bottom: 15px;
-    }
-
-    .nav-links {
-        display: flex;
-        flex-direction: column; 
-        align-items: center;
-        width: 100%;
-        gap: 15px; 
-    }
+    .burger-menu { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+    .burger-menu span { width: 25px; height: 3px; background: white; }
     
-    .btn-signup, .btn-logout, .user-menu {
-        margin: 0 !important; 
-        width: 100%;          
-        max-width: 200px;
-        justify-content: center;
-        box-sizing: border-box;
-    }
-
-    .user-menu {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 20px;
-    }
-
-    .main-welcome {
-        font-size: 2.5rem;
-        margin-top: 30px;
-        padding: 0 10px;
-    }
-
-    .about-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .about-text { margin-bottom: 20px; }
-    .about-action { text-align: center; margin-top: 20px; }
-    
-    .cat-section, .cat-section:nth-child(even) {
-        flex-direction: column !important; 
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .cat-visual {
-        width: 100%; 
-        order: -1;   
-    }
-
-    .slider-wrapper {
-        height: 300px; 
-        width: 100%;
-    }
-    
-    .cat-details { width: 100%; }
-
-    .minesweeper-container {
-        padding: 10px;
-        transform: scale(0.9); 
-    }
-}
-
-@media (max-width: 768px) {
-    .games-grid { padding: 0 10px; }
-    .game-card { width: 100% !important; margin-bottom: 20px; }
-}
-
-.burger-menu {
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-}
-.burger-menu span {
-    width: 25px; height: 3px; background: white; border-radius: 2px;
-}
-
-@media (max-width: 768px) {
-    .burger-menu { display: flex; }
-    
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 70px; left: 0; width: 100%;
-        background: var(--deep-pink);
-        flex-direction: column;
-        padding: 20px 0;
-        gap: 15px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
+    .nav-links { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ff8fa3; flex-direction: column; justify-content: center; gap: 20px; z-index: 2000; }
     .nav-links.show { display: flex; }
+    .close-menu { display: block; position: absolute; top: 20px; right: 20px; font-size: 2rem; color: white; border: none; background: none; }
 
-    .nav-links a, .btn-signup, .btn-logout {
-        width: 80%;
-        padding: 12px;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        color: white !important;
-    }
-    
-    .user-menu {
-        flex-direction: column;
-        padding: 10px;
-        width: 80%;
-        background: rgba(255, 255, 255, 0.2);
-    }
-}
-/* fixing mobile version */
-@media (max-width: 768px) {
-    nav { padding: 10px; background: #ff4081; } 
-    .burger-menu { display: flex; }
-    .nav-links {
-        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: #ff4081; flex-direction: column; justify-content: center; gap: 20px; z-index: 2000;
-    }
-    .nav-links.show { display: flex; }
-    .close-menu { display: block; background: none; border: none; color: white; font-size: 2.5rem; position: absolute; top: 20px; right: 20px; }
-
-    .main-welcome { font-size: 2rem !important; margin: 20px 0; }
+    .main-welcome { font-size: 2.2rem !important; margin-top: 20px; }
     .about-text h2 { font-size: 1.5rem; }
-    .about-text p { font-size: 0.9rem; line-height: 1.4; }
+    .about-text p { font-size: 0.9rem; }
 
-    .random-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 5px; }
-    .random-card { height: 100px; }
+    .games-grid { flex-direction: column; align-items: center; gap: 20px; }
+    .game-card { width: 85%; }
 
-    .user-menu { background: none !important; border: none !important; box-shadow: none !important; gap: 5px; }
-    .user-name { color: white !important; font-size: 1.1rem; }
-    .btn-logout { background: none !important; color: #ff8fa3 !important; text-decoration: underline; font-size: 0.8rem; }
+    .random-grid { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+    .random-card { height: 80px; }
 
-    .games-grid { flex-direction: column; align-items: center; }
-    .game-card { width: 90% !important; margin-bottom: 20px; }
+    .user-menu { background: none !important; border: none !important; box-shadow: none !important; align-items: center; }
+    .user-name { color: white !important; font-size: 1.1rem; margin-bottom: 5px; }
+    .btn-logout { background: none !important; color: #ffeb3b !important; text-decoration: underline; font-size: 0.9rem; }
 }
