@@ -753,6 +753,11 @@ input:focus-visible + .slider-toggle {
     }
 }
 
+@media (max-width: 768px) {
+    .games-grid { padding: 0 10px; }
+    .game-card { width: 100% !important; margin-bottom: 20px; }
+}
+
 .burger-menu {
     display: none;
     flex-direction: column;
