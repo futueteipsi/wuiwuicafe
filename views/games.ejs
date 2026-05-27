@@ -16,13 +16,18 @@
 <body>
     <nav>
         <div class="logo">WuiWuiCafe</div>
-        <div class="nav-links">
+        
+        <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleMenu()">
+            <span class="hamburger"></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
             <a href="/"><%= __("nav_home") %></a>
             <a href="/cats"><%= __("nav_cats") %></a>
             <a href="/games" class="active"><%= __("nav_games") %></a>
             
             <% if (typeof user !== 'undefined' && user) { %>
-                <div class="user-menu">
+                <div class="user-menu mobile-user-menu">
                     <span class="user-name"><%= user.username %></span>
                     <a href="/logout" class="btn-logout"><%= __("nav_logout") %></a>
                 </div>
@@ -85,6 +90,14 @@
                 if (checkbox) checkbox.checked = true;
             }
         });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navLinks.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        }
     </script>
 </body>
 </html>
