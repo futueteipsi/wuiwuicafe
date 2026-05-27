@@ -189,7 +189,7 @@ nav {
 }
 
 .random-card {
-    height: 300px;
+    aspect-ratio: 1 / 1;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
