@@ -1,58 +1,112 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;600;700&display=swap');
 
+/* colors */
 :root {
-    --bg-color: #fff0f5;
-    --deep-pink: #ff8fa3;
-    --nav-color: #e91e63; /* Потемнее для контраста */
-    --accent: #ff4081;
-    --text-dark: #5d4037;
+    --bg-color: #fff0f5;        
+    --glass-white: rgba(255, 255, 255, 0.95);
+    --primary-pink: #ffb7c5;   
+    --deep-pink: #ff8fa3;      
+    --accent: #ff4081;         
+    --text-dark: #5d4037;      
+    --text-light: #8d6e63;     
+    --mobile-nav: #d81b60; /* Темнее для контраста */
 }
 
-body { font-family: 'Quicksand', sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-dark); }
+/* BODY */
+body { font-family: 'Quicksand', sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-dark); background-size: 60px 60px; background-position: 0 0, 30px 30px; }
 h1, h2, h3, .logo { font-family: 'Fredoka', sans-serif; }
 a { text-decoration: none; }
 
-/* NAVIGATION (DESKTOP) */
-nav { background: var(--nav-color); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-.logo { font-size: 1.8rem; color: white; }
+/* MENU NAVIGATION */
+nav { background: var(--deep-pink); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+.logo { font-size: 1.8rem; color: white; font-weight: 600; }
 .nav-links { display: flex; align-items: center; gap: 20px; }
-.nav-links a { color: #fce4ec; font-weight: 700; font-size: 1.1rem; }
+.nav-links a { color: var(--text-dark); font-weight: 700; font-size: 1.1rem; transition: color 0.3s ease; margin: 0; }
 .nav-links a.active { color: white; border-bottom: 2px solid white; }
 
-.burger-menu, .close-menu { display: none; }
+/* Бургер меню скрыто на десктопе */
+.burger-menu { display: none; background: none; border: none; cursor: pointer; padding: 10px; }
+.burger-menu span { display: block; width: 25px; height: 3px; background: white; margin: 5px 0; }
+.close-menu { display: none; }
 
-/* MOBILE RESPONSIVE */
+/* LANG SWITCHER */
+.lang-switcher { display: inline-flex; align-items: center; gap: 8px; font-weight: bold; }
+.lang-switcher a { color: var(--text-dark); }
+.lang-switcher a.lang-active { color: white !important; }
+
+/* Buttons */
+.btn-signup { background: var(--deep-pink); color: white !important; padding: 10px 25px; border-radius: 50px; box-shadow: 0 5px 15px rgba(255, 64, 129, 0.2); transition: 0.2s; }
+.btn-signup:hover { background: var(--accent); transform: translateY(-2px); }
+.btn { display: inline-block; padding: 12px 35px; margin: 10px; border-radius: 50px; font-weight: bold; font-size: 1.1rem; transition: 0.2s; }
+.btn.primary { background: var(--accent); color: white; box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3); }
+
+/* HOME page */
+.main-welcome { text-align: center; font-size: 4rem; margin-top: 60px; margin-bottom: 40px; color: var(--accent); }
+.highlight { color: var(--deep-pink); font-weight: bold; }
+
+.about-strip { width: 100%; background: white; padding: 60px 0; box-shadow: 0 4px 15px rgba(255, 183, 197, 0.15); }
+.about-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 50px; }
+.about-text { flex: 2; }
+.about-text h2 { color: var(--deep-pink); font-size: 2.5rem; }
+.about-text p { font-size: 1.2rem; line-height: 1.6; }
+.about-action { flex: 1; text-align: right; }
+
+.api-container { padding: 60px 20px; text-align: center; max-width: 1000px; margin: 0 auto; }
+.random-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
+.random-card { height: 300px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.random-card img { width: 100%; height: 100%; object-fit: cover; }
+.btn-refresh { display: inline-block; color: var(--accent); border: 2px solid var(--accent); padding: 10px 30px; border-radius: 30px; font-weight: bold; margin-top: 30px; }
+
+/* CATS page */
+.cats-container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+.cat-section { display: flex; align-items: center; gap: 60px; margin-bottom: 80px; background: white; padding: 30px; border-radius: 30px; }
+.cat-section:nth-child(even) { flex-direction: row-reverse; background: #fff8fa; }
+.cat-visual, .cat-details { flex: 1; }
+.btn-like { margin-top: 20px; background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 10px 25px; border-radius: 25px; cursor: pointer; font-weight: bold; }
+
+/* GAMES PAGE */
+.games-grid { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+.game-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+
+/* FOOTER */
+footer { text-align: center; padding: 40px 20px; background: white; margin-top: 60px; }
+
+/* USER MENU */
+.user-menu { display: inline-flex; align-items: center; gap: 10px; background: white; padding: 5px 15px; border-radius: 50px; border: 2px solid var(--primary-pink); }
+.user-name { font-weight: bold; color: var(--accent); }
+.btn-logout { background: var(--deep-pink); color: white !important; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
+
+/* MOBILE RESPONSIVENESS */
 @media (max-width: 768px) {
     /* Навигация */
-    .burger-menu { display: flex; flex-direction: column; gap: 5px; background: none; border: none; padding: 10px; cursor: pointer; }
-    .burger-menu span { width: 25px; height: 3px; background: white; }
-    
+    nav { background: var(--mobile-nav); padding: 10px; }
+    .burger-menu { display: flex; }
     .nav-links { 
         display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-        background: var(--nav-color); flex-direction: column; justify-content: center; align-items: center; gap: 25px; z-index: 2000; 
+        background: var(--mobile-nav); flex-direction: column; justify-content: center; align-items: center; gap: 20px; z-index: 2000; 
     }
     .nav-links.show { display: flex; }
-    .close-menu { display: block; position: absolute; top: 20px; right: 20px; font-size: 2.5rem; color: white; background: none; border: none; }
-
-    /* Шрифты и отступы */
-    .main-welcome { font-size: 2.2rem !important; margin-top: 20px; padding: 0 10px; }
+    .close-menu { display: block; position: absolute; top: 20px; right: 20px; font-size: 2.5rem; color: white; border: none; background: none; }
+    
+    /* Ссылки меню на мобилке */
+    .nav-links a { color: white !important; font-size: 1.5rem; }
+    .nav-links a.active { border: none; background: white; color: var(--mobile-nav) !important; padding: 10px 20px; border-radius: 10px; }
+    
+    /* Тексты */
+    .main-welcome { font-size: 2rem !important; margin: 20px 0; }
     .about-text h2 { font-size: 1.5rem; }
     .about-text p { font-size: 0.9rem; }
     
-    /* Сетка котов */
-    .random-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 5px; }
+    /* API Grid (3 в ряд) */
+    .random-grid { grid-template-columns: repeat(3, 1fr); gap: 5px; }
     .random-card { height: 80px; }
-
-    /* Юзер-меню (без фона) */
-    .user-menu { background: none !important; border: none !important; box-shadow: none !important; align-items: center; display: flex; flex-direction: column; }
-    .user-name { color: white !important; font-size: 1.1rem; margin-bottom: 5px; }
-    .btn-logout { background: none !important; color: #ffeb3b !important; text-decoration: underline; font-size: 0.9rem; }
 
     /* Игры вертикально */
     .games-grid { flex-direction: column; align-items: center; gap: 20px; }
-    .game-card { width: 85% !important; margin-bottom: 0; }
-}
+    .game-card { width: 80% !important; margin-bottom: 20px; }
 
-/* Остальные стили (кнопки, формы, слайдер) оставляем как были, они не мешают */
-.btn-signup { background: var(--deep-pink); color: white !important; padding: 10px 25px; border-radius: 50px; }
-.btn.primary { background: var(--accent); color: white; }
+    /* User Menu мобильное */
+    .user-menu { background: none !important; border: none !important; box-shadow: none !important; flex-direction: column; gap: 5px; }
+    .user-name { color: white !important; font-size: 1.2rem; }
+    .btn-logout { background: none !important; color: #ffeb3b !important; text-decoration: underline; font-size: 0.9rem; border: none !important; }
+}
