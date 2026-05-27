@@ -55,7 +55,7 @@ nav {
 }
 
 .nav-links a {
-    color: #e0e0e0;
+    color: #fc6f9f;
     font-weight: 700;
     font-size: 1.1rem;
     transition: color 0.3s ease;
@@ -74,10 +74,10 @@ nav {
     font-weight: bold;
 }
 .lang-switcher a {
-    color: #e0e0e0;
+    color: #fc6f9f;
 }
 .lang-switcher span {
-    color: #e0e0e0;
+    color: #fc6f9f;
 }
 .lang-switcher a.lang-active {
     color: var(--glass-white) !important;
