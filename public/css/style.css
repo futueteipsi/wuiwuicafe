@@ -937,4 +937,8 @@ input:focus-visible + .slider-toggle {
         aspect-ratio: 1 / 1 !important; /* Сохраняем карточки идеальными аккуратными квадратами */
         border-radius: 12px !important; /* Красивые мягкие углы для мобилки */
     }
+
+    .random-grid .random-card:nth-child(10) {
+        display: none !important;
+    }
 }
