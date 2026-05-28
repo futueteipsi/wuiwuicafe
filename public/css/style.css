@@ -828,17 +828,15 @@ input:focus-visible + .slider-toggle {
         text-align: left;
     }
 
-    /* УПРАВЛЕНИЕ ПОРЯДКОМ ГЛАВНЫХ БЛОКОВ МЕНЮ */
-    .nav-links > .mobile-user-menu { order: 1 !important; } /* Блок профиля (Никнейм) уходит на самый верх */
-    .nav-links > a:not(.btn-signup):not([href="/login"]) { order: 2 !important; } /* Ссылки страниц */
-    .nav-links > a[href="/login"], .nav-links > .btn-signup { order: 3 !important; } /* Вход/Регистрация */
-    .nav-links > .lang-switcher { order: 4 !important; } /* Языки */
+    .nav-links > .mobile-user-menu { order: 1 !important; } 
+    .nav-links > a:not(.btn-signup):not([href="/login"]) { order: 2 !important; }
+    .nav-links > a[href="/login"], .nav-links > .btn-signup { order: 3 !important; } 
+    .nav-links > .lang-switcher { order: 4 !important; }
     .nav-links > .accessibility-toggle-container { 
         order: 5 !important; 
-        margin-bottom: 15px !important; /* Отступ перед кнопкой Logout */
+        margin-bottom: 15px !important; 
     }
 
-    /* ВОЗВРАЩАЕМ ЯЗЫКАМ КРАСИВЫЙ СТРОЧНЫЙ ВИД ДЛЯ МОБИЛКИ */
     .lang-switcher {
         display: inline-flex !important;
         flex-direction: row !important; 
@@ -849,14 +847,13 @@ input:focus-visible + .slider-toggle {
     .lang-switcher a, .lang-switcher span {
         color: #ffffff !important;
         font-size: 1.2rem !important;
-        order: initial !important; /* Сбрасываем десктопный order внутри блока языков */
+        order: initial !important;
     }
 
     .accessibility-toggle-container {
         margin-top: 0px;
     }
 
-    /* СТИЛИ КОНТЕЙНЕРА ПРОФИЛЯ */
     .nav-links .mobile-user-menu {
         display: flex !important;
         flex-direction: column !important;
@@ -870,7 +867,6 @@ input:focus-visible + .slider-toggle {
         box-sizing: border-box !important;
     }
 
-    /* Никнейм в самом верху меню с полосочкой снизу */
     .nav-links .mobile-user-menu .user-name {
         order: 1 !important; 
         color: #ffffff !important; 
@@ -885,10 +881,9 @@ input:focus-visible + .slider-toggle {
         word-break: break-all;
     }
 
-    /* Кнопка Logout — улетает в самый-самый низ */
     .nav-links .mobile-user-menu .btn-logout {
-        order: 6 !important; /* Перебивает порядок и становится ниже ползунка доступности */
-        margin-top: auto !important; /* Физически прижимает кнопку к нижнему краю меню */
+        order: 6 !important; 
+        margin-top: auto !important; 
         
         background: #ffffff !important; 
         color: var(--accent) !important; 
@@ -923,8 +918,7 @@ input:focus-visible + .slider-toggle {
         width: 100%;
         max-width: 150px;
     }
-    
-    /* СТИЛИ СТРАНИЦЫ HOME */
+
     .main-welcome {
         font-size: 2.2rem !important; 
         margin-top: 30px !important;
