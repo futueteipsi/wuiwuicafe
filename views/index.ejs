@@ -15,10 +15,6 @@
         </button>
 
         <div class="nav-links" id="navLinks">
-            <a href="/" class="active"><%= __("nav_home") %></a>
-            <a href="/cats"><%= __("nav_cats") %></a>
-            <a href="/games"><%= __("nav_games") %></a>
-            
             <% if (typeof user !== 'undefined' && user) { %>
                 <div class="user-menu mobile-user-menu">
                     <span class="user-name"><%= user.username %></span>
@@ -28,6 +24,10 @@
                 <a href="/login"><%= __("nav_login") %></a>
                 <a href="/register" class="btn-signup"><%= __("nav_signup") %></a>
             <% } %>
+
+            <a href="/" class="active"><%= __("nav_home") %></a>
+            <a href="/cats"><%= __("nav_cats") %></a>
+            <a href="/games"><%= __("nav_games") %></a>
 
             <div class="lang-switcher">
                 <a href="/change-lang/en" class="<%= locale === 'en' ? 'lang-active' : '' %>">EN</a>
