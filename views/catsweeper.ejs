@@ -37,16 +37,16 @@
         </button>
 
         <div class="nav-links" id="navLinks">
-            <a href="/"><%= __("nav_home") %></a>
-            <a href="/cats"><%= __("nav_cats") %></a>
-            <a href="/games" class="active"><%= __("nav_games") %></a>
-            
             <% if (typeof user !== 'undefined' && user) { %>
                 <div class="user-menu mobile-user-menu">
                     <span class="user-name"><%= user.username %></span>
                     <a href="/logout" class="btn-logout"><%= __("nav_logout") %></a>
                 </div>
             <% } %>
+
+            <a href="/"><%= __("nav_home") %></a>
+            <a href="/cats"><%= __("nav_cats") %></a>
+            <a href="/games" class="active"><%= __("nav_games") %></a>
 
             <div class="lang-switcher">
                 <a href="/change-lang/en" class="<%= locale === 'en' ? 'lang-active' : '' %>">EN</a>
