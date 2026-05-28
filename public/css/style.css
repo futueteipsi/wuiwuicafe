@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@400;600;700&display=swap&subset=latin-ext');
 
 /* colors */
 :root {
@@ -170,7 +170,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 50px;
+    gap: 40px;
 }
 
 .about-text {
@@ -191,8 +191,9 @@ nav {
 }
 
 .about-action {
-    flex: 1;
+    flex: initial;
     text-align: right;
+    white-space: nowrap;
 }
 
 .api-container {
@@ -976,5 +977,66 @@ input:focus-visible + .slider-toggle {
 
     .random-grid .random-card:nth-child(10) {
         display: none !important;
+    }
+
+    .page-header h1 {
+        font-size: 2.2rem !important;
+        margin-top: 20px !important;
+    }
+    .page-header p {
+        font-size: 1.1rem !important;
+        padding: 0 15px !important;
+    }
+
+    /* OUR CATS page */
+    .cats-container {
+        padding: 20px 10px !important; 
+    }
+
+    .cat-section, .cat-section:nth-child(even) {
+        flex-direction: column !important; 
+        gap: 20px !important;
+        padding: 20px 15px !important; 
+        border-radius: 20px !important;
+    }
+
+    .cat-visual {
+        width: 100% !important;
+        order: 1 !important;
+    }
+
+    .slider-wrapper {
+        height: 250px !important; 
+    }
+
+    .cat-details {
+        width: 100% !important;
+        order: 2 !important; 
+        text-align: center !important; 
+    }
+
+    .cat-details h2 {
+        font-size: 1.8rem !important; 
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        gap: 8px;
+    }
+
+    .age-tag {
+        margin-left: 0 !important; 
+        font-size: 0.9rem !important;
+    }
+
+    .cat-details p {
+        font-size: 1rem !important; 
+        line-height: 1.5 !important;
+    }
+
+    .btn-like {
+        width: 100% !important; 
+        max-width: 260px;
+        justify-content: center;
+        box-sizing: border-box;
     }
 }
