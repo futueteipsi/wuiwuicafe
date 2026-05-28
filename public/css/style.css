@@ -835,6 +835,23 @@ input:focus-visible + .slider-toggle {
         color: #ffffff !important;
     }
 
+    .nav-links > a:not(.btn-signup):not([href="/login"]) {
+        order: 1 !important; /* Все обычные ссылки (Home, Cats, Games) идут следом */
+    }
+    .nav-links > a[href="/login"],
+    .nav-links > .btn-signup {
+        order: 2 !important; /* Кнопки логина, если пользователя нет */
+    }
+    .nav-links > .lang-switcher {
+        order: 3 !important; /* Языки опускаются под ссылки */
+    }
+    .nav-links > .accessibility-toggle-container {
+        order: 4 !important; /* Ползунок доступности замыкает меню в самом низу */
+    }
+    .nav-links > .mobile-user-menu {
+        order: 5 !important; /* Белый овал пользователя ВСЕГДА на 1 месте в самом верху */
+    }
+
     .nav-links .mobile-user-menu {
         display: inline-flex !important; /* Делаем контейнер по ширине контента */
         flex-direction: column !important; /* Выстраиваем ник и кнопку сверху вниз */
@@ -896,23 +913,6 @@ input:focus-visible + .slider-toggle {
         text-align: center;
         width: 100%;
         max-width: 150px;
-    }
-    /* Явно задаем мобильный порядок только для прямых потомков .nav-links */
-    .nav-links > .mobile-user-menu {
-        order: 1 !important; /* Белый овал пользователя ВСЕГДА на 1 месте в самом верху */
-    }
-    .nav-links > a:not(.btn-signup):not([href="/login"]) {
-        order: 2 !important; /* Все обычные ссылки (Home, Cats, Games) идут следом */
-    }
-    .nav-links > a[href="/login"],
-    .nav-links > .btn-signup {
-        order: 3 !important; /* Кнопки логина, если пользователя нет */
-    }
-    .nav-links > .lang-switcher {
-        order: 4 !important; /* Языки опускаются под ссылки */
-    }
-    .nav-links > .accessibility-toggle-container {
-        order: 5 !important; /* Ползунок доступности замыкает меню в самом низу */
     }
     
     .main-welcome {
