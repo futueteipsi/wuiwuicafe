@@ -808,7 +808,7 @@ input:focus-visible + .slider-toggle {
         width: 70%; 
         height: 100vh;
         background: var(--accent); 
-        padding: 80px 30px 30px 30px;
+        padding: 80px 30px 40px 30px; 
         gap: 20px;
         box-sizing: border-box;
         transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -828,71 +828,79 @@ input:focus-visible + .slider-toggle {
         text-align: left;
     }
 
-    .lang-switcher, .accessibility-toggle-container {
-        margin-top: 10px;
-    }
-    .lang-switcher a, .lang-switcher span {
-        color: #ffffff !important;
-    }
-
     .nav-links > a:not(.btn-signup):not([href="/login"]) {
-        order: 1 !important; /* Все обычные ссылки (Home, Cats, Games) идут следом */
+        order: 1 !important;
     }
     .nav-links > a[href="/login"],
     .nav-links > .btn-signup {
-        order: 2 !important; /* Кнопки логина, если пользователя нет */
+        order: 2 !important;
     }
     .nav-links > .lang-switcher {
-        order: 3 !important; /* Языки опускаются под ссылки */
+        order: 3 !important;
     }
     .nav-links > .accessibility-toggle-container {
-        order: 4 !important; /* Ползунок доступности замыкает меню в самом низу */
+        order: 4 !important;
     }
+
     .nav-links > .mobile-user-menu {
-        order: 5 !important; /* Белый овал пользователя ВСЕГДА на 1 месте в самом верху */
+        order: 5 !important;
+        margin-top: auto !important; 
+    }
+
+    .lang-switcher {
+        display: inline-flex !important;
+        flex-direction: row !important; 
+        align-items: center !important;
+        gap: 8px !important;
+    }
+    .lang-switcher a, .lang-switcher span {
+        color: #ffffff !important;
+        font-size: 1.2rem !important;
+    }
+
+    .accessibility-toggle-container {
+        margin-top: 0px;
     }
 
     .nav-links .mobile-user-menu {
-        display: inline-flex !important; /* Делаем контейнер по ширине контента */
-        flex-direction: column !important; /* Выстраиваем ник и кнопку сверху вниз */
-        align-items: center !important; /* Центрируем ник и кнопку внутри овала */
-        gap: 8px !important; /* Отступ между никнеймом и кнопкой внутри овала */
+        display: inline-flex !important; 
+        flex-direction: column !important; 
+        align-items: center !important; 
+        gap: 8px !important; 
         
-        /* Возвращаем десктопные стили для всего общего контейнера */
         background: white !important; 
-        padding: 12px 10px !important; /* Хорошие внутренние отступы со всех сторон */
-        border-radius: 25px !important; /* Красивое общее скругление контейнера */
+        padding: 12px 15px !important; 
+        border-radius: 25px !important; 
         border: 2px solid var(--primary-pink) !important;
         box-shadow: 0 4px 10px rgba(255, 183, 197, 0.2) !important;
         
-        width: auto !important;
-        max-width: 90% !important; /* Чтобы овал не упирался в края экрана */
-        margin-top: 0px !important;
-        margin-bottom: 5px !important;
+        width: 100% !important; 
+        max-width: 240px !important; 
+        margin-bottom: 0px !important;
         box-sizing: border-box !important;
     }
 
     .nav-links .mobile-user-menu .user-name {
-        color: var(--accent) !important; /* Фирменный розовый цвет */
+        color: var(--accent) !important; 
         font-family: 'Fredoka', sans-serif;
         font-weight: bold;
-        font-size: 1.1rem !important;
-        background: transparent !important; /* Убираем фоны, так как фон теперь общий белый */
+        font-size: 1.05rem !important;
+        background: transparent !important; 
         padding: 0 !important;
         border: none !important;
         box-shadow: none !important;
         text-align: center !important;
         width: 100% !important;
-        word-break: break-all; /* Аккуратный перенос длинной почты */
+        word-break: break-all; 
     }
 
     .nav-links .mobile-user-menu .btn-logout {
-        background: var(--deep-pink) !important; /* Наш десктопный розовый */
+        background: var(--deep-pink) !important; 
         color: white !important;
         font-size: 0.95rem !important;
         font-weight: bold !important;
-        padding: 8px 25px !important; /* Удобный размер для нажатия */
-        border-radius: 20px !important; /* Округлые края кнопки */
+        padding: 8px 25px !important; 
+        border-radius: 20px !important; 
         text-align: center !important;
         text-decoration: none !important;
         display: inline-block !important;
@@ -915,6 +923,7 @@ input:focus-visible + .slider-toggle {
         max-width: 150px;
     }
     
+    /* СТИЛИ СТРАНИЦЫ HOME */
     .main-welcome {
         font-size: 2.2rem !important; 
         margin-top: 30px !important;
@@ -924,53 +933,50 @@ input:focus-visible + .slider-toggle {
     }
 
     .about-container {
-        flex-direction: column !important; /* Контент теперь идет строго вертикально */
-        text-align: center !important; /* Центрируем текст для красивого мобильного UX */
-        gap: 20px !important; /* Уменьшаем расстояние между блоками */
+        flex-direction: column !important; 
+        text-align: center !important; 
+        gap: 20px !important; 
         padding: 0 20px !important;
     }
 
     .about-text {
-        margin-bottom: 0 !important; /* Убираем лишний нижний отступ */
+        margin-bottom: 0 !important; 
         text-align: center !important;
     }
 
     .about-text h2 {
-        font-size: 2rem !important; /* Чуть уменьшаем заголовок секции */
+        font-size: 2rem !important; 
         margin-bottom: 10px !important;
     }
 
     .about-text p {
-        font-size: 1.1rem !important; /* Оставляем хороший читаемый размер текста */
+        font-size: 1.1rem !important; 
         line-height: 1.5 !important;
     }
 
-    /* Кнопка "Meet our residents" теперь встает строго ПОД текст по центру */
     .about-action {
         text-align: center !important; 
         width: 100% !important;
-        margin-top: 5px !important; /* Прижимаем поближе к тексту, как ты просила */
+        margin-top: 5px !important; 
     }
 
     .about-action .btn {
         margin: 0 !important;
         width: 100% !important;
-        max-width: 280px !important; /* Ограничиваем ширину кнопки, чтобы она не была гигантской */
+        max-width: 280px !important; 
     }
 
-    /* 3. Переделываем API блок: возвращаем крупный размер картинок и ставим ровно 3 кота в ряд */
     .random-grid {
-        /* Делаем сетку строго из 3 колонок, чтобы котики снова стали большими и отчетливыми */
         grid-template-columns: repeat(3, 1fr) !important; 
-        gap: 12px !important; /* Оптимальный зазор для мобильных экранов */
+        gap: 12px !important; 
         margin-top: 30px !important;
         padding: 0 10px !important;
     }
 
     .random-card {
-        height: auto !important; /* Сбрасываем десктопную фиксированную высоту */
-        aspect-ratio: 1 / 1 !important; /* Сохраняем карточки идеальными аккуратными квадратами */
-        border-radius: 12px !important; /* Красивые мягкие углы для мобилки */
+        height: auto !important; 
+        aspect-ratio: 1 / 1 !important; 
+        border-radius: 12px !important; 
     }
 
     .random-grid .random-card:nth-child(10) {
