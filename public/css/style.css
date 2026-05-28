@@ -828,23 +828,14 @@ input:focus-visible + .slider-toggle {
         text-align: left;
     }
 
-    /* УПРАВЛЕНИЕ ПОРЯДКОМ В МОБИЛЬНОЙ ВЕРСИИ */
-    .nav-links > a:not(.btn-signup):not([href="/login"]) {
-        order: 1 !important; /* 1. Ссылки (Home, Cats, Games) вверху */
-    }
-    .nav-links > a[href="/login"],
-    .nav-links > .btn-signup {
-        order: 2 !important; /* 2. Кнопки входа/регистрации (если нет юзера) */
-    }
-    .nav-links > .lang-switcher {
-        order: 3 !important; /* 3. Языки строго под ссылками */
-    }
-    .nav-links > .accessibility-toggle-container {
-        order: 4 !important; /* 4. Ползунок доступности ниже */
-    }
-    .nav-links > .mobile-user-menu {
-        order: 5 !important; /* 5. Белый овал пользователя уходит в САМЫЙ НИЗ */
-        margin-top: auto !important; /* Выталкивает овал к нижней границе экрана */
+    /* УПРАВЛЕНИЕ ПОРЯДКОМ ГЛАВНЫХ БЛОКОВ МЕНЮ */
+    .nav-links > .mobile-user-menu { order: 1 !important; } /* Блок профиля (Никнейм) уходит на самый верх */
+    .nav-links > a:not(.btn-signup):not([href="/login"]) { order: 2 !important; } /* Ссылки страниц */
+    .nav-links > a[href="/login"], .nav-links > .btn-signup { order: 3 !important; } /* Вход/Регистрация */
+    .nav-links > .lang-switcher { order: 4 !important; } /* Языки */
+    .nav-links > .accessibility-toggle-container { 
+        order: 5 !important; 
+        margin-bottom: 15px !important; /* Отступ перед кнопкой Logout */
     }
 
     /* ВОЗВРАЩАЕМ ЯЗЫКАМ КРАСИВЫЙ СТРОЧНЫЙ ВИД ДЛЯ МОБИЛКИ */
@@ -865,59 +856,64 @@ input:focus-visible + .slider-toggle {
         margin-top: 0px;
     }
 
+    /* СТИЛИ КОНТЕЙНЕРА ПРОФИЛЯ */
     .nav-links .mobile-user-menu {
-        display: inline-flex !important; 
-        flex-direction: column !important; 
-        align-items: center !important; 
-        gap: 8px !important; 
-        
-        background: white !important; 
-        padding: 12px 15px !important; 
-        border-radius: 25px !important; 
-        border: 2px solid var(--primary-pink) !important;
-        box-shadow: 0 4px 10px rgba(255, 183, 197, 0.2) !important;
-        
-        width: 100% !important; 
-        max-width: 240px !important; 
-        margin-bottom: 0px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important; 
+        width: 100% !important;
+        background: transparent !important; 
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
         box-sizing: border-box !important;
     }
 
+    /* Никнейм в самом верху меню с полосочкой снизу */
     .nav-links .mobile-user-menu .user-name {
-        color: var(--accent) !important; 
-        font-family: 'Fredoka', sans-serif;
-        font-weight: bold;
-        font-size: 1.05rem !important;
-        background: transparent !important; 
-        padding: 0 !important;
-        border: none !important;
-        box-shadow: none !important;
-        text-align: center !important;
+        order: 1 !important; 
+        color: #ffffff !important; 
+        font-family: 'Fredoka', sans-serif; 
+        font-weight: 600;
+        font-size: 1.6rem !important; 
+        text-align: left !important; 
+        padding-bottom: 15px !important;
+        margin-bottom: 10px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important; 
         width: 100% !important;
-        word-break: break-all; 
-        order: initial !important;
+        word-break: break-all;
     }
 
+    /* Кнопка Logout — улетает в самый-самый низ */
     .nav-links .mobile-user-menu .btn-logout {
-        background: var(--deep-pink) !important; 
-        color: white !important;
-        font-size: 0.95rem !important;
+        order: 6 !important; /* Перебивает порядок и становится ниже ползунка доступности */
+        margin-top: auto !important; /* Физически прижимает кнопку к нижнему краю меню */
+        
+        background: #ffffff !important; 
+        color: var(--accent) !important; 
+        font-family: 'Quicksand', sans-serif;
+        font-size: 1.1rem !important;
         font-weight: bold !important;
-        padding: 8px 25px !important; 
-        border-radius: 20px !important; 
+        
+        padding: 14px 20px !important; 
+        border-radius: 50px !important; 
+        border: none !important; 
         text-align: center !important;
         text-decoration: none !important;
-        display: inline-block !important;
-        width: auto !important;
-        min-width: 100px !important;
-        border: none !important; 
-        box-shadow: none !important;
-        transition: all 0.2s ease !important;
-        order: initial !important;
+        display: block !important;
+        
+        width: 100% !important;
+        max-width: 280px !important; 
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important; 
+        box-sizing: border-box !important;
+        transition: background-color 0.2s ease !important;
     }
 
     .nav-links .mobile-user-menu .btn-logout:active {
-        background: var(--accent) !important;
+        background-color: #fff0f5 !important; 
     }
 
     .nav-links .btn-signup {
