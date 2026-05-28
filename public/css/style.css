@@ -791,7 +791,7 @@ input:focus-visible + .slider-toggle {
         height: 100vh;
         background: var(--accent); 
         padding: 80px 30px 30px 30px;
-        gap: 25px;
+        gap: 20px;
         box-sizing: border-box;
         transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
@@ -821,18 +821,18 @@ input:focus-visible + .slider-toggle {
         display: inline-flex !important; /* Делаем контейнер по ширине контента */
         flex-direction: column !important; /* Выстраиваем ник и кнопку сверху вниз */
         align-items: center !important; /* Центрируем ник и кнопку внутри овала */
-        gap: 10px !important; /* Отступ между никнеймом и кнопкой внутри овала */
+        gap: 8px !important; /* Отступ между никнеймом и кнопкой внутри овала */
         
         /* Возвращаем десктопные стили для всего общего контейнера */
         background: white !important; 
-        padding: 15px 20px !important; /* Хорошие внутренние отступы со всех сторон */
+        padding: 12px 10px !important; /* Хорошие внутренние отступы со всех сторон */
         border-radius: 25px !important; /* Красивое общее скругление контейнера */
         border: 2px solid var(--primary-pink) !important;
         box-shadow: 0 4px 10px rgba(255, 183, 197, 0.2) !important;
         
         width: auto !important;
         max-width: 90% !important; /* Чтобы овал не упирался в края экрана */
-        margin-top: 10px !important;
+        margin-top: 0px !important;
         margin-bottom: 5px !important;
         box-sizing: border-box !important;
     }
