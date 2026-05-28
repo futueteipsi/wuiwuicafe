@@ -80,7 +80,7 @@ const myCats = [
 app.get('/', async (req, res) => {
     let randomImages = [];
     try {
-        const response = await axios.get('https://api.thecatapi.com/v1/images/search?limit=3');
+        const response = await axios.get('https://api.thecatapi.com/v1/images/search?limit=15');
         randomImages = response.data;
     } catch (error) {
         console.error("Error fetching API images:", error);
