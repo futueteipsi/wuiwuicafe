@@ -58,6 +58,18 @@ nav {
     gap: 20px;
 }
 
+.nav-links a:not(.btn-signup), 
+.nav-links .lang-switcher, 
+.nav-links .accessibility-toggle-container {
+    order: 1; 
+}
+
+.nav-links .user-menu, 
+.nav-links a[href="/login"], 
+.nav-links .btn-signup {
+    order: 2; 
+}
+
 .nav-links a {
     color: #fc81ab;
     font-weight: 700;
