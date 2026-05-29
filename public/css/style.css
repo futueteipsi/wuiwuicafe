@@ -57,7 +57,9 @@ nav {
     gap: 20px;
 }
 
-.nav-links > a:not(.btn-signup):not([href="/login"]) {
+.nav-links > a[href="/"],
+.nav-links > a[href="/cats"],
+.nav-links > a[href="/games"] {
     order: 1 !important;
 }
 
