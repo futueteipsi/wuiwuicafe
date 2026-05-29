@@ -76,7 +76,7 @@ const myCats = [
     {
     name: "Vaflya",
     age: "4 years",
-    images: ["/images/cats/waffle1.jpg", "/images/cats/waffle2.jpg", "/images/cats/waffle3.jpg"]
+    images: ["/images/waffle1.jpg", "/images/waffle2.jpg", "/images/waffle3.jpg"]
     }
 ];
 
