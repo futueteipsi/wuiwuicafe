@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 i18n.configure({
     locales: ['en', 'lv'],
-    directory: path.join(__dirname, 'locales'), 
+    directory: path.join(__dirname, 'locales', 'locales'), 
     defaultLocale: 'en',
     cookie: 'lang',
     queryParameter: 'lang',
