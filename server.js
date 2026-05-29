@@ -74,9 +74,10 @@ const myCats = [
         images: ["/images/smoki1.jpg", "/images/smoki2.jpg", "/images/smoki3.jpg"]
     },
     {
-    name: "Vaflya",
-    age: "4 years",
-    images: ["/images/waffle1.jpg", "/images/waffle2.jpg", "/images/waffle3.jpg"]
+        name: "Vaflya",
+        age: "4 years",
+        description: "Big kitty, likes to eat as her father. Like to fight and loves to be petted.",
+        images: ["/images/waffle1.jpg", "/images/waffle2.jpg", "/images/waffle3.jpg"]
     }
 ];
 
