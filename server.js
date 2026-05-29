@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const axios = require('axios'); 
 const bcrypt = require('bcrypt');
 const db = require('./database');
-
 const app = express();
 const PORT = 3000;
 
@@ -16,6 +15,13 @@ const PORT = 3000;
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// SESSION MANAGEMENT 
+app.use(session({
+    secret: 'wuiwuicafe_secure_key',
+    resave: false,
+    saveUninitialized: false
+}));
 
 i18n.configure({
     locales: ['en', 'lv'],
@@ -45,13 +51,6 @@ app.get('/change-lang/:lang', (req, res) => {
 // VIEW ENGINE SETUP
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
-// SESSION MANAGEMENT 
-app.use(session({
-    secret: 'wuiwuicafe_secure_key',
-    resave: false,
-    saveUninitialized: false
-}));
 
 // DATA STORAGE 
 const myCats = [
