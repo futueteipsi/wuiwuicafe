@@ -72,6 +72,11 @@ const myCats = [
         age: "7 months",
         description: "Our little sunshine! Smokie has the energy of 3 cats and loves every food in the world.",
         images: ["/images/smoki1.jpg", "/images/smoki2.jpg", "/images/smoki3.jpg"]
+    },
+    {
+    name: "Vaflya",
+    age: "4 years",
+    images: ["/images/cats/waffle1.jpg", "/images/cats/waffle2.jpg", "/images/cats/waffle3.jpg"]
     }
 ];
 
